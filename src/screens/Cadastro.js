@@ -12,6 +12,8 @@ import {
 
 import { Image } from "react-native";
 
+import destaque from "../../assets/images/cadastro-destaque.png";
+
 export default function Cadastro({ navigation }) {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
@@ -73,6 +75,7 @@ export default function Cadastro({ navigation }) {
   return (
     <>
       <View style={estilos.container}>
+        <Image style={estilos.destaque} source={destaque} />
         <View style={estilos.formulario}>
           <TextInput
             placeholder="Nome Completo"
@@ -117,6 +120,12 @@ const estilos = StyleSheet.create({
     width: "auto",
     height: "35%",
   },
+  destaque: {
+    width: 170,
+    height: 250,
+    alignSelf: "center",
+    marginVertical: 20,
+  },
   formulario: {
     marginVertical: 30,
     padding: 10,
@@ -128,7 +137,7 @@ const estilos = StyleSheet.create({
   input: {
     borderWidth: 1,
     padding: 15,
-    borderColor: "#207FDE",
+    borderColor: "#000",
     borderRadius: 40,
     marginVertical: 10,
     height: 47,
@@ -136,10 +145,10 @@ const estilos = StyleSheet.create({
   botoes: {
     borderWidth: 1,
     padding: 15,
-    borderColor: "#207FDE",
+    borderColor: "#000",
     borderRadius: 40,
     marginVertical: 20,
-    backgroundColor: "#207FDE",
+    backgroundColor: "#000",
     alignItems: "center",
   },
   botaoRecuperar: {
