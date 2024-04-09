@@ -14,7 +14,6 @@ import Cadastro from "./src/screens/Cadastro"; // Importa o componente Cadastro
 import Login from "./src/screens/Login"; // Importa o componente Login
 import HomeScreen from "./src/screens/HomeScreen"; // Importa o componente HomeScreen
 import UsuarioAvatar from "./src/screens/UsuarioAvatar"; // Importa o componente UsuarioAvatar
-import Logout from "./src/components/Logout";
 import Transferencia from "./src/screens/Transferencia"; // Importa o componente Transferencia
 
 const Drawer = createDrawerNavigator(); // Cria um DrawerNavigator
@@ -81,9 +80,38 @@ export default function App() {
           {/* Navegação condicional com base no login do usuário */}
           {isUserLoggedIn ? (
             <>
-              <Drawer.Screen name="Home" component={HomeScreen} />
+              <Drawer.Screen
+                name="Home"
+                component={HomeScreen}
+                options={{
+                  drawerIcon: ({ focused, size }) => (
+                    <Icon
+                      name={focused ? "home" : "home-outline"}
+                      size={size}
+                      color={"#000"}
+                    />
+                  ),
+                }}
+              />
               {/* Define a tela Home se o usuário estiver logado */}
-              <Drawer.Screen name="Transferencia" component={Transferencia} />
+              <Drawer.Screen
+                name="Transferencia"
+                component={Transferencia}
+                options={{
+                  drawerIcon: ({ focused, size }) => (
+                    <Icon
+                      name={
+                        focused
+                          ? "arrow-up-bold-circle"
+                          : "arrow-up-circle-outline"
+                      }
+                      size={size}
+                      color={"#000"}
+                    />
+                  ),
+                }}
+              />
+
               {/* Adiciona a tela de Transferencia ao menu lateral */}
             </>
           ) : (
