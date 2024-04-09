@@ -39,7 +39,7 @@ export default function Login({ navigation }) {
 
     try {
       await signInWithEmailAndPassword(auth, email, senha);
-      navigation.navigate("Pontos");
+      navigation.navigate("Home");
     } catch (error) {
       console.error("error:", error); // Adicione este log
       console.error(error.code);
@@ -133,7 +133,7 @@ const estilos = StyleSheet.create({
   input: {
     borderWidth: 1,
     padding: 15,
-    borderColor: "#000r",
+    borderColor: "#000",
     borderRadius: 40,
     marginVertical: 20,
   },

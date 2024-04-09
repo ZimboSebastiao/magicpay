@@ -49,7 +49,7 @@ export default function Cadastro({ navigation }) {
         {
           style: "default",
           text: "Ir para a Home",
-          onPress: () => navigation.navigate("Pontos"),
+          onPress: () => navigation.navigate("Home"),
         },
       ]);
     } catch (error) {

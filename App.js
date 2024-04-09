@@ -4,9 +4,11 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
   createDrawerNavigator,
+  DrawerItem, // Importa o DrawerItem
 } from "@react-navigation/drawer";
-import { getAuth, onAuthStateChanged } from "firebase/auth"; // Importa métodos de autenticação do Firebase
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth"; // Importa métodos de autenticação do Firebase
 import { useState, useEffect } from "react"; // Importa hooks do React
+import Icon from "react-native-vector-icons/MaterialIcons"; // Importa o ícone de logout
 
 import Cadastro from "./src/screens/Cadastro"; // Importa o componente Cadastro
 import Login from "./src/screens/Login"; // Importa o componente Login
@@ -34,11 +36,30 @@ export default function App() {
 
   // Componente personalizado de conteúdo do drawer
   function CustomDrawerContent(props) {
+    const auth = getAuth(); // Obtém a instância de autenticação
+
+    const handleLogout = async () => {
+      try {
+        await signOut(auth); // Faz logout do usuário
+      } catch (error) {
+        console.error("Erro ao fazer logout:", error);
+      }
+    };
+
     return (
       <DrawerContentScrollView {...props}>
         {/* Exibe o avatar do usuário se estiver logado */}
         {isUserLoggedIn && <UsuarioAvatar />}
         <DrawerItemList {...props} />
+        {isUserLoggedIn && (
+          <DrawerItem
+            label="Sair"
+            onPress={handleLogout}
+            icon={({ color, size }) => (
+              <Icon name="exit-to-app" color={color} size={size} /> // Ícone de logout
+            )}
+          />
+        )}
       </DrawerContentScrollView>
     );
   }
@@ -51,7 +72,7 @@ export default function App() {
         <Drawer.Navigator
           initialRouteName={isUserLoggedIn ? "Home" : "Login"} // Define a rota inicial com base no status de login do usuário
           screenOptions={{
-            headerStyle: { backgroundColor: "#1D1D1D" }, // Estilo do cabeçalho
+            headerStyle: { backgroundColor: "#B22222" }, // Estilo do cabeçalho
             headerTintColor: "white", // Cor do texto do cabeçalho
           }}
           drawerContent={(props) => <CustomDrawerContent {...props} />} // Define o conteúdo do drawer
