@@ -22,7 +22,7 @@ import {
 import { useState } from "react";
 
 import logo from "../../assets/images/logo.png";
-import Cadastro from "./Cadastro";
+import Cadastro from "../screens/Cadastro.js";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
@@ -133,17 +133,17 @@ const estilos = StyleSheet.create({
   input: {
     borderWidth: 1,
     padding: 15,
-    borderColor: "#000",
+    borderColor: "#000r",
     borderRadius: 40,
     marginVertical: 20,
   },
   botoes: {
     borderWidth: 1,
     padding: 15,
-    borderColor: "#000",
+    borderColor: "#B22222",
     borderRadius: 40,
     marginVertical: 20,
-    backgroundColor: "#000",
+    backgroundColor: "#B22222",
     alignItems: "center",
   },
   textoBotao: {

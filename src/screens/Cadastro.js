@@ -8,11 +8,12 @@ import {
   StyleSheet,
   TextInput,
   View,
+  ScrollView,
 } from "react-native";
 
 import { Image } from "react-native";
 
-import destaque from "../../assets/images/cadastro-destaque.png";
+import destaque from "../../assets/images/cadastro.gif";
 
 export default function Cadastro({ navigation }) {
   const [nome, setNome] = useState("");
@@ -74,8 +75,11 @@ export default function Cadastro({ navigation }) {
 
   return (
     <>
-      <View style={estilos.container}>
-        <Image style={estilos.destaque} source={destaque} />
+      <ScrollView style={estilos.container}>
+        <View>
+          <Image style={estilos.destaque} source={destaque} />
+          <Text style={estilos.titulo}>Cadastro</Text>
+        </View>
         <View style={estilos.formulario}>
           <TextInput
             placeholder="Nome Completo"
@@ -103,7 +107,7 @@ export default function Cadastro({ navigation }) {
             </Pressable>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 }
@@ -121,15 +125,20 @@ const estilos = StyleSheet.create({
     height: "35%",
   },
   destaque: {
-    width: 170,
+    width: 210,
     height: 250,
     alignSelf: "center",
     marginVertical: 20,
   },
+  titulo: {
+    textAlign: "center",
+    fontSize: 27,
+    fontWeight: "bold",
+    color: "#B22222",
+  },
   formulario: {
     marginVertical: 30,
     padding: 10,
-
     width: "90%",
     marginLeft: "auto",
     marginRight: "auto",
@@ -145,10 +154,10 @@ const estilos = StyleSheet.create({
   botoes: {
     borderWidth: 1,
     padding: 15,
-    borderColor: "#000",
+    borderColor: "#B22222",
     borderRadius: 40,
     marginVertical: 20,
-    backgroundColor: "#000",
+    backgroundColor: "#B22222",
     alignItems: "center",
   },
   botaoRecuperar: {
