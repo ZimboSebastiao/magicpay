@@ -15,6 +15,7 @@ import Login from "./src/screens/Login"; // Importa o componente Login
 import HomeScreen from "./src/screens/HomeScreen"; // Importa o componente HomeScreen
 import UsuarioAvatar from "./src/screens/UsuarioAvatar"; // Importa o componente UsuarioAvatar
 import Transferencia from "./src/screens/Transferencia"; // Importa o componente Transferencia
+import { FontAwesome } from "@expo/vector-icons";
 
 const Drawer = createDrawerNavigator(); // Cria um DrawerNavigator
 
@@ -85,11 +86,7 @@ export default function App() {
                 component={HomeScreen}
                 options={{
                   drawerIcon: ({ focused, size }) => (
-                    <Icon
-                      name={focused ? "home" : "home-outline"}
-                      size={size}
-                      color={"#000"}
-                    />
+                    <FontAwesome name="home" size={24} color="grey" />
                   ),
                 }}
               />
@@ -98,16 +95,8 @@ export default function App() {
                 name="Transferencia"
                 component={Transferencia}
                 options={{
-                  drawerIcon: ({ focused, size }) => (
-                    <Icon
-                      name={
-                        focused
-                          ? "arrow-up-bold-circle"
-                          : "arrow-up-circle-outline"
-                      }
-                      size={size}
-                      color={"#000"}
-                    />
+                  drawerIcon: () => (
+                    <FontAwesome name="money" size={24} color="grey" />
                   ),
                 }}
               />
