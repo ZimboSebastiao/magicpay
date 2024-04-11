@@ -1,13 +1,13 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import transacaoImage from "../../assets/images/transacao.png";
 
 import { auth } from "../../firebase.config";
 
 import {
   Avatar,
-  AvatarBadge,
   AvatarFallbackText,
-  AvatarImage,
+  Image,
   Box,
   VStack,
   Badge,
@@ -17,6 +17,18 @@ import {
   GluestackUIProvider,
   Icon,
   BellIcon,
+  Card,
+  Select,
+  SelectTrigger,
+  SelectInput,
+  SelectIcon,
+  ChevronDownIcon,
+  SelectPortal,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicatorWrapper,
+  SelectDragIndicator,
+  SelectItem,
 } from "@gluestack-ui/themed";
 import { config } from "@gluestack-ui/config";
 
@@ -25,13 +37,14 @@ const HomeScreen = () => {
   return (
     <GluestackUIProvider config={config}>
       <View style={styles.container}>
+        {/* CABEÇALHO - Avatar */}
         <View style={styles.usuarioAvatar}>
           <Avatar bgColor="$amber600" size="md" borderRadius="$full">
             <AvatarFallbackText>{nome || "Visitante"}</AvatarFallbackText>
           </Avatar>
 
           <View>
-            <Text style={styles.textoHeader}>Balança Total</Text>
+            <Text style={styles.textoHeader}>Balanço Total</Text>
             <Text style={styles.textoValor}>
               R$0 000,00 - <Text style={styles.textoPorcetagem}>0,0 (0%)</Text>{" "}
             </Text>
@@ -60,6 +73,67 @@ const HomeScreen = () => {
               </Button>
             </VStack>
           </Box>
+        </View>
+
+        {/* CARD DE SALDO MONETÁRIO */}
+        <View>
+          <Card
+            style={styles.cartao}
+            p="$5"
+            borderRadius="$lg"
+            maxWidth={360}
+            m="$3"
+          >
+            <Text style={styles.textoCartao}>Saldo monetário</Text>
+            <Text style={styles.textoCartaoValor}> R$0 000,00</Text>
+
+            <Select>
+              <SelectTrigger style={styles.selecao} variant="rounded" size="sm">
+                <SelectInput sx={{ color: "white" }} placeholder="Moeda" />
+                <SelectIcon mr="$3">
+                  <Icon as={ChevronDownIcon} />
+                </SelectIcon>
+              </SelectTrigger>
+              <SelectPortal>
+                <SelectBackdrop />
+                <SelectContent>
+                  <SelectDragIndicatorWrapper style={styles.selecaoConteudo}>
+                    <SelectDragIndicator />
+                  </SelectDragIndicatorWrapper>
+                  <SelectItem label="Real Brasil" value="R$" />
+                  <SelectItem label="US dollar" value="$" />
+                  <SelectItem label="Kwanza Angola" value="AOA" />
+                </SelectContent>
+              </SelectPortal>
+            </Select>
+          </Card>
+        </View>
+
+        <View>
+          <Card
+            style={styles.cartaoTransacao}
+            p="$2"
+            maxWidth={360}
+            m="$3"
+            borderRadius="$full"
+          >
+            <View style={styles.imagemCartao}>
+              <Image
+                mb="$0"
+                h={40}
+                width={40}
+                source={transacaoImage}
+                alt="Icon de transação"
+              />
+            </View>
+            <View style={styles.textosCartao}>
+              <Text style={styles.textoCartao}>Transações</Text>
+              <Text style={styles.textoTransacao}>
+                {" "}
+                R$0 000,00 recebido em abril
+              </Text>
+            </View>
+          </Card>
         </View>
       </View>
     </GluestackUIProvider>
@@ -97,6 +171,39 @@ const styles = StyleSheet.create({
   textoPorcetagem: {
     color: "green",
     fontWeight: "bold",
+  },
+  cartao: {
+    backgroundColor: "#FF7E3F",
+    marginVertical: 40,
+  },
+  imagemCartao: {
+    backgroundColor: "#9C9C9C",
+    padding: 4,
+
+    borderRadius: 150,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  textoCartao: {
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  textoCartaoValor: {
+    fontSize: 35,
+  },
+  selecao: {
+    backgroundColor: "black",
+    borderColor: "black",
+  },
+  selecaoConteudo: {
+    color: "white",
+  },
+  cartaoTransacao: {
+    backgroundColor: "#454545",
+    flexDirection: "row",
+  },
+  textosCartao: {
+    paddingLeft: 10,
   },
 });
 
