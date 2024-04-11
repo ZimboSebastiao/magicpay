@@ -116,7 +116,7 @@ const estilos = {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#000", // Cor de fundo clara
+    backgroundColor: "#000", // Cor de fundo escura
   },
   entrada: {
     height: 60,
@@ -138,7 +138,7 @@ const estilos = {
     borderWidth: 0, // Sem borda
     padding: 20,
     margin: 10, // Espaçamento entre os botões
-    borderRadius: 50, // Borda arredondada para botões circulares
+    borderRadius: 10, // Borda arredondada para botões circulares
     width: 60, // Tamanho fixo para botões circulares
     height: 60, // Tamanho fixo para botões circulares
     backgroundColor: "#fe7251", // Cor de fundo vermelha
@@ -156,7 +156,7 @@ const estilos = {
     borderWidth: 0, // Sem borda
     padding: 20,
     margin: 10, // Espaçamento entre os botões
-    borderRadius: 50, // Borda arredondada para botões circulares
+    borderRadius: 10, // Borda arredondada para botões circulares
     width: 60, // Tamanho fixo para botões circulares
     height: 60, // Tamanho fixo para botões circulares
     backgroundColor: "#fe7251", // Cor de fundo vermelha
@@ -172,7 +172,7 @@ const estilos = {
   },
   botaoGerar: {
     paddingVertical: 15,
-    paddingHorizontal: 30,
+    paddingHorizontal: 70,
     backgroundColor: "#fe7251", // Cor de fundo vermelha
     borderRadius: 10, // Borda arredondada
     elevation: 3, // Sombra para levantar o botão
