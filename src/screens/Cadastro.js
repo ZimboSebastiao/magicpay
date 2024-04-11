@@ -12,7 +12,7 @@ import {
 } from "react-native";
 
 import { Image } from "react-native";
-// teste
+
 import destaque from "../../assets/images/cadastro.gif";
 
 export default function Cadastro({ navigation }) {

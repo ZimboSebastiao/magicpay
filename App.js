@@ -84,21 +84,27 @@ export default function App() {
               <Drawer.Screen
                 name="Home"
                 component={HomeScreen}
-                options={{
-                  drawerIcon: ({ focused, size }) => (
-                    <FontAwesome name="home" size={24} color="grey" />
-                  ),
-                }}
+                options={
+                  ({
+                    drawerIcon: ({ focused, size }) => (
+                      <FontAwesome name="home" size={24} color="grey" />
+                    ),
+                  },
+                  { headerShown: false })
+                }
               />
               {/* Define a tela Home se o usuário estiver logado */}
               <Drawer.Screen
                 name="Transferencia"
                 component={Transferencia}
-                options={{
-                  drawerIcon: () => (
-                    <FontAwesome name="money" size={24} color="grey" />
-                  ),
-                }}
+                options={
+                  ({
+                    drawerIcon: () => (
+                      <FontAwesome name="money" size={24} color="grey" />
+                    ),
+                  },
+                  { headerShown: false })
+                }
               />
 
               {/* Adiciona a tela de Transferencia ao menu lateral */}
