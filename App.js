@@ -1,11 +1,8 @@
 import { StatusBar } from "react-native";
+
 import { NavigationContainer } from "@react-navigation/native";
-import {
-  DrawerContentScrollView,
-  DrawerItemList,
-  createDrawerNavigator,
-  DrawerItem, // Importa o DrawerItem
-} from "@react-navigation/drawer";
+
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth"; // Importa métodos de autenticação do Firebase
 import { useState, useEffect } from "react"; // Importa hooks do React
 import Icon from "react-native-vector-icons/MaterialIcons"; // Importa o ícone de logout
@@ -13,11 +10,10 @@ import Icon from "react-native-vector-icons/MaterialIcons"; // Importa o ícone 
 import Cadastro from "./src/screens/Cadastro"; // Importa o componente Cadastro
 import Login from "./src/screens/Login"; // Importa o componente Login
 import HomeScreen from "./src/screens/HomeScreen"; // Importa o componente HomeScreen
-import UsuarioAvatar from "./src/screens/UsuarioAvatar"; // Importa o componente UsuarioAvatar
 import Transferencia from "./src/screens/Transferencia"; // Importa o componente Transferencia
 import { FontAwesome } from "@expo/vector-icons";
 
-const Drawer = createDrawerNavigator(); // Cria um DrawerNavigator
+const Tab = createBottomTabNavigator();
 
 // Importa dependências e componentes necessários
 
@@ -35,69 +31,46 @@ export default function App() {
     return unsubscribe; // Limpa a inscrição quando o componente for desmontado
   }, []);
 
-  // Componente personalizado de conteúdo do drawer
-  function CustomDrawerContent(props) {
-    const auth = getAuth(); // Obtém a instância de autenticação
-
-    const handleLogout = async () => {
-      try {
-        await signOut(auth); // Faz logout do usuário
-      } catch (error) {
-        console.error("Erro ao fazer logout:", error);
-      }
-    };
-
-    return (
-      <DrawerContentScrollView {...props}>
-        {/* Exibe o avatar do usuário se estiver logado */}
-        {isUserLoggedIn && <UsuarioAvatar />}
-        <DrawerItemList {...props} />
-        {isUserLoggedIn && (
-          <DrawerItem
-            label="Sair"
-            onPress={handleLogout}
-            icon={({ color, size }) => (
-              <Icon name="exit-to-app" color={color} size={size} /> // Ícone de logout
-            )}
-          />
-        )}
-      </DrawerContentScrollView>
-    );
-  }
-
   // Retorna o componente do aplicativo
   return (
     <>
       <StatusBar barStyle="light-content" />
       <NavigationContainer>
-        <Drawer.Navigator
+        <Tab.Navigator
           initialRouteName={isUserLoggedIn ? "Home" : "Login"} // Define a rota inicial com base no status de login do usuário
           screenOptions={{
-            headerStyle: { backgroundColor: "#B22222" }, // Estilo do cabeçalho
-            headerTintColor: "white", // Cor do texto do cabeçalho
+            tabBarStyle: {
+              backgroundColor: "rgba(69, 69, 69, 0.9)", // Cor de fundo da barra de navegação inferior
+              // borderTopWidth: 0, // Remove a linha superior da barra de navegação
+            },
+            // tabBarItemStyle: {
+            //   // paddingVertical: 10, // Espaçamento vertical dos botões
+            // },
+            // tabBarActiveTintColor: "white", // Cor do ícone e do rótulo da guia ativa
+            // tabBarInactiveTintColor: "gray", // Cor do ícone e do rótulo da guia inativa
           }}
-          drawerContent={(props) => <CustomDrawerContent {...props} />} // Define o conteúdo do drawer
         >
           {/* Navegação condicional com base no login do usuário */}
           {isUserLoggedIn ? (
             <>
-              <Drawer.Screen
+              <Tab.Screen
                 name="Home"
                 component={HomeScreen}
                 options={{
                   headerShown: false,
-                  drawerIcon: ({ focused, size }) => (
+
+                  tabBarIcon: ({ focused, size }) => (
                     <FontAwesome name="home" size={24} color="grey" />
                   ),
                 }}
               />
               {/* Define a tela Home se o usuário estiver logado */}
-              <Drawer.Screen
+              <Tab.Screen
                 name="Transferencia"
                 component={Transferencia}
                 options={{
                   headerShown: false,
-                  drawerIcon: () => (
+                  tabBarIcon: () => (
                     <FontAwesome name="money" size={24} color="grey" />
                   ),
                 }}
@@ -107,19 +80,19 @@ export default function App() {
             </>
           ) : (
             <>
-              <Drawer.Screen
+              <Tab.Screen
                 name="Login"
                 component={Login}
                 options={{ headerShown: false }} // Esconde o cabeçalho na tela de login
               />
-              <Drawer.Screen
+              <Tab.Screen
                 name="Cadastro"
                 component={Cadastro}
                 options={{ headerShown: false }} // Esconde o cabeçalho na tela de cadastro
               />
             </>
           )}
-        </Drawer.Navigator>
+        </Tab.Navigator>
       </NavigationContainer>
     </>
   );
