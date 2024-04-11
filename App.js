@@ -12,6 +12,9 @@ import Icon from "react-native-vector-icons/MaterialIcons"; // Importa o ícone 
 
 import Cadastro from "./src/screens/Cadastro"; // Importa o componente Cadastro
 import Login from "./src/screens/Login"; // Importa o componente Login
+
+import ForgotPassword from "./src/screens/ForgotPassword";
+
 import HomeScreen from "./src/screens/HomeScreen"; // Importa o componente HomeScreen
 import UsuarioAvatar from "./src/screens/UsuarioAvatar"; // Importa o componente UsuarioAvatar
 import Transferencia from "./src/screens/Transferencia"; // Importa o componente Transferencia
@@ -114,6 +117,11 @@ export default function App() {
                 name="Cadastro"
                 component={Cadastro}
                 options={{ headerShown: false }} // Esconde o cabeçalho na tela de cadastro
+              />
+              <Drawer.Screen
+                name="Esqueci a senha"
+                component={ForgotPassword}
+                options={{ headerShown: false }} // Esconde o cabeçalho na tela de redefinição de senha
               />
             </>
           )}
