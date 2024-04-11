@@ -8,9 +8,12 @@ import {
   StyleSheet,
   TextInput,
   View,
+  ScrollView,
 } from "react-native";
 
 import { Image } from "react-native";
+
+import destaque from "../../assets/images/cadastro.gif";
 
 export default function Cadastro({ navigation }) {
   const [nome, setNome] = useState("");
@@ -46,7 +49,7 @@ export default function Cadastro({ navigation }) {
         {
           style: "default",
           text: "Ir para a Home",
-          onPress: () => navigation.navigate("Pontos"),
+          onPress: () => navigation.navigate("Home"),
         },
       ]);
     } catch (error) {
@@ -72,7 +75,11 @@ export default function Cadastro({ navigation }) {
 
   return (
     <>
-      <View style={estilos.container}>
+      <ScrollView style={estilos.container}>
+        <View>
+          <Image style={estilos.destaque} source={destaque} />
+          <Text style={estilos.titulo}>Cadastro</Text>
+        </View>
         <View style={estilos.formulario}>
           <TextInput
             placeholder="Nome Completo"
@@ -100,7 +107,7 @@ export default function Cadastro({ navigation }) {
             </Pressable>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 }
@@ -117,10 +124,21 @@ const estilos = StyleSheet.create({
     width: "auto",
     height: "35%",
   },
+  destaque: {
+    width: 210,
+    height: 250,
+    alignSelf: "center",
+    marginVertical: 20,
+  },
+  titulo: {
+    textAlign: "center",
+    fontSize: 27,
+    fontWeight: "bold",
+    color: "#B22222",
+  },
   formulario: {
     marginVertical: 30,
     padding: 10,
-
     width: "90%",
     marginLeft: "auto",
     marginRight: "auto",
@@ -128,7 +146,7 @@ const estilos = StyleSheet.create({
   input: {
     borderWidth: 1,
     padding: 15,
-    borderColor: "#207FDE",
+    borderColor: "#000",
     borderRadius: 40,
     marginVertical: 10,
     height: 47,
@@ -136,10 +154,10 @@ const estilos = StyleSheet.create({
   botoes: {
     borderWidth: 1,
     padding: 15,
-    borderColor: "#207FDE",
+    borderColor: "#B22222",
     borderRadius: 40,
     marginVertical: 20,
-    backgroundColor: "#207FDE",
+    backgroundColor: "#B22222",
     alignItems: "center",
   },
   botaoRecuperar: {

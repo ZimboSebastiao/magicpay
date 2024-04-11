@@ -21,6 +21,9 @@ import {
 
 import { useState } from "react";
 
+import logo from "../../assets/images/logo.png";
+import Cadastro from "../screens/Cadastro.js";
+
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -36,7 +39,7 @@ export default function Login({ navigation }) {
 
     try {
       await signInWithEmailAndPassword(auth, email, senha);
-      navigation.navigate("Pontos");
+      navigation.navigate("Home");
     } catch (error) {
       console.error("error:", error); // Adicione este log
       console.error(error.code);
@@ -69,6 +72,7 @@ export default function Login({ navigation }) {
   return (
     <>
       <View style={estilos.container}>
+        <Image style={estilos.logo} source={logo} />
         <View style={estilos.formulario}>
           <TextInput
             onChangeText={(valor) => setEmail(valor)}
@@ -87,7 +91,16 @@ export default function Login({ navigation }) {
             </Pressable>
 
             <Pressable style={estilos.botoes} onPress={login}>
-              <Text style={estilos.textoBotao}>Conectar</Text>
+              <Text style={estilos.textoBotao}>Login</Text>
+            </Pressable>
+
+            <Pressable style={estilos.botaoCadastro} onPress={Cadastro}>
+              <Text
+                style={estilos.textoBotaoCadastro}
+                onPress={() => navigation.navigate("Cadastro")}
+              >
+                Não tem cadastro? Então Cadastre-se !!!
+              </Text>
             </Pressable>
           </View>
         </View>
@@ -108,40 +121,53 @@ const estilos = StyleSheet.create({
     width: "auto",
     height: "35%",
   },
+  logo: {
+    width: 300,
+    height: 100,
+    alignSelf: "center",
+    marginVertical: 50,
+  },
   formulario: {
-    marginVertical: 30,
     padding: 10,
   },
   input: {
     borderWidth: 1,
     padding: 15,
-    borderColor: "#207FDE",
+    borderColor: "#000",
     borderRadius: 40,
     marginVertical: 20,
   },
   botoes: {
     borderWidth: 1,
     padding: 15,
-    borderColor: "#207FDE",
+    borderColor: "#B22222",
     borderRadius: 40,
     marginVertical: 20,
-    backgroundColor: "#207FDE",
+    backgroundColor: "#B22222",
     alignItems: "center",
-  },
-  botaoRecuperar: {
-    padding: 0,
-    marginVertical: 4,
-    alignItems: "flex-end",
   },
   textoBotao: {
     fontSize: 16,
     fontWeight: "bold",
     color: "white",
   },
-
+  botaoRecuperar: {
+    padding: 0,
+    marginVertical: 4,
+    alignItems: "flex-end",
+  },
   textoBotaoRecuperar: {
     fontSize: 15,
     fontWeight: "bold",
     color: "grey",
+  },
+  botaoCadastro: {
+    padding: 0,
+    marginVertical: 4,
+    alignItems: "center",
+  },
+  textoBotaoCadastro: {
+    fontSize: 14,
+    color: "#2f2e2e",
   },
 });

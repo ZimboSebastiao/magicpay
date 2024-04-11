@@ -26,7 +26,7 @@ export default function UsuarioAvatar() {
             </Avatar>
             <VStack>
               <Heading size="sm">{nome || "Visitante"}</Heading>
-              <Text size="sm">Developer</Text>
+              <Text size="sm">Comerciante</Text>
             </VStack>
           </HStack>
         </VStack>
