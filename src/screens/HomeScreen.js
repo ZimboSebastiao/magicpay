@@ -37,7 +37,7 @@ const HomeScreen = () => {
   return (
     <GluestackUIProvider config={config}>
       <View style={styles.container}>
-        {/* CABEÇALHO - Avatar */}
+        {/* CABEÇALHO - AVATAR - NOTIFICAÇÃOS*/}
         <View style={styles.usuarioAvatar}>
           <Avatar bgColor="$amber600" size="md" borderRadius="$full">
             <AvatarFallbackText>{nome || "Visitante"}</AvatarFallbackText>
@@ -127,8 +127,8 @@ const HomeScreen = () => {
               />
             </View>
             <View style={styles.textosCartao}>
-              <Text style={styles.textoCartao}>Transações</Text>
-              <Text style={styles.textoTransacao}>
+              <Text style={styles.textoTransacao}>Transações</Text>
+              <Text style={styles.textoRecebido}>
                 {" "}
                 R$0 000,00 recebido em abril
               </Text>
@@ -204,6 +204,13 @@ const styles = StyleSheet.create({
   },
   textosCartao: {
     paddingLeft: 10,
+  },
+  textoTransacao: {
+    color: "white",
+    fontWeight: "bold",
+  },
+  textoRecebido: {
+    color: "#828282",
   },
 });
 
