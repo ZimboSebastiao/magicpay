@@ -141,7 +141,7 @@ const estilos = {
     borderRadius: 10, // Borda arredondada para botões circulares
     width: 60, // Tamanho fixo para botões circulares
     height: 60, // Tamanho fixo para botões circulares
-    backgroundColor: "#fe7251", // Cor de fundo vermelha
+    backgroundColor: "#FF7E3F", // Cor de fundo
     elevation: 3, // Sombra para levantar o botão
     justifyContent: "center",
     alignItems: "center",
@@ -159,7 +159,7 @@ const estilos = {
     borderRadius: 10, // Borda arredondada para botões circulares
     width: 60, // Tamanho fixo para botões circulares
     height: 60, // Tamanho fixo para botões circulares
-    backgroundColor: "#fe7251", // Cor de fundo vermelha
+    backgroundColor: "#FF7E3F", // Cor de fundo vermelha
     elevation: 3, // Sombra para levantar o botão
     justifyContent: "center",
     alignItems: "center",
