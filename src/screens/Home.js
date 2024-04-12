@@ -4,6 +4,7 @@ import transacaoImage from "../../assets/images/transacao.png";
 
 import { auth } from "../../firebase.config";
 
+
 import {
   Avatar,
   AvatarFallbackText,
@@ -32,7 +33,7 @@ import {
 } from "@gluestack-ui/themed";
 import { config } from "@gluestack-ui/config";
 
-const HomeScreen = () => {
+const Home = () => {
   const { email, displayName: nome } = auth.currentUser;
   return (
     <GluestackUIProvider config={config}>
@@ -214,4 +215,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default Home;

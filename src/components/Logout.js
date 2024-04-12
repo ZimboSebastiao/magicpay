@@ -1,23 +1,31 @@
+// Logout.js
 import { useEffect } from "react";
-
+import { useNavigation } from "@react-navigation/native";
 import { auth } from "../../firebase.config";
 import { signOut } from "firebase/auth";
 
-function Logout({ navigation }) {
+export const logout = async () => {
+  try {
+    await signOut(auth);
+    // Você pode redirecionar o usuário para onde quiser aqui
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const Logout = () => {
+  const navigation = useNavigation();
+
   useEffect(() => {
-    const logout = async () => {
-      try {
-        await signOut(auth);
-        navigation.navigate("Inicial");
-      } catch (error) {
-        console.error(error);
-      }
+    const performLogout = async () => {
+      await logout();
+      navigation.navigate("Login"); // Redireciona para a tela de login após o logout
     };
 
-    logout();
+    performLogout();
   }, []);
 
-  return null; // renderiza nada
-}
+  return null;
+};
 
 export default Logout;

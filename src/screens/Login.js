@@ -7,9 +7,8 @@ import {
   View,
   Text,
 } from "react-native";
-
 import { Image } from "react-native";
-
+import { useNavigation } from "@react-navigation/native";
 // Importando os recursos de autenticação
 import { auth } from "../../firebase.config";
 // console.log("auth:", auth);
@@ -27,10 +26,8 @@ import Cadastro from "../screens/Cadastro.js";
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-
+  const navigation = useNavigation();
   const login = async () => {
-    // console.log("email:", email); // Adicione este log
-    // console.log("senha:", senha); // Adicione este log
 
     if (!email || !senha) {
       Alert.alert("Atenção!", "Preencha e-mail e senha!");
