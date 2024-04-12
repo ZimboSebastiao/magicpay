@@ -16,11 +16,13 @@ import Login from "./src/screens/Login";
 import Home from "./src/screens/Home"
 import Transferencia from "./src/screens/Transferencia";
 import Configuracoes from  "./src/screens/Configuracoes";
+import Splash from "./src/screens/Splash"
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
     const auth = getAuth();
@@ -28,13 +30,24 @@ export default function App() {
       setUserLoggedIn(!!user);
     });
 
+    // Simulate a loading time for the splash screen
+    setTimeout(() => {
+      setShowSplash(false);
+    }, 4000);
     return unsubscribe;
   }, []);
+
+
+  
+    if (showSplash) {
+      return <Splash />;
+    }
 
   if (!isUserLoggedIn) {
     return (
       <NavigationContainer>
         <Tab.Navigator>
+
           <Tab.Screen
             name="Login"
             component={Login}
