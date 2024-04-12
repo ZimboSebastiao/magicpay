@@ -1,8 +1,27 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Pressable,
+} from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { getAuth, signOut } from "firebase/auth";
 
 const Configuracoes = () => {
+  const handleLogout = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        console.log("Logout realizado com sucesso!");
+        // Aqui você pode navegar para a tela de login ou fazer qualquer outra ação necessária após o logout
+      })
+      .catch((error) => {
+        console.error("Erro ao fazer logout:", error);
+      });
+  };
+
   return (
     <View style={estilos.container}>
       <View style={estilos.section}>
@@ -22,10 +41,6 @@ const Configuracoes = () => {
           <FontAwesome5 name="user" size={20} color="black" />
           <Text style={estilos.optionText}>Meus Dados</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={estilos.option}>
-          <FontAwesome5 name="lock" size={20} color="black" />
-          <Text style={estilos.optionText}>Alterar Senha</Text>
-        </TouchableOpacity>
       </View>
       <View style={estilos.section}>
         <Text style={estilos.sectionTitle}>Minhas Chaves PIX</Text>
@@ -38,6 +53,9 @@ const Configuracoes = () => {
           <Text style={estilos.optionText}>Listar Chaves Cadastradas</Text>
         </TouchableOpacity>
       </View>
+      <TouchableOpacity style={estilos.logoutButton} onPress={handleLogout}>
+        <Text style={estilos.logoutButtonText}>Sair</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -66,6 +84,18 @@ const estilos = StyleSheet.create({
     marginLeft: 10,
     fontSize: 16,
     color: "white",
+  },
+  logoutButton: {
+    backgroundColor: "#FF7E3F",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    alignSelf: "center",
+    marginTop: 20,
+  },
+  logoutButtonText: {
+    color: "white",
+    fontWeight: "bold",
   },
 });
 
