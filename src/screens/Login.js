@@ -18,33 +18,31 @@ import logo from "../../assets/images/logo.png";
 import Cadastro from "../screens/Cadastro.js";
 
 
-export default function Login({navigation}) {
+export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
   const login = async () => {
-
     if (!email || !senha) {
-      Alert.alert("Atenção!", "Preencha e-mail e senha!");
+      Alert.alert("Atenção", "Preencha e-mail e senha");
       return;
     }
+    // console.log(senha, email);
 
     try {
       await signInWithEmailAndPassword(auth, email, senha);
-      
-      navigation.navigate("Home");
+      navigation.replace("Home");
     } catch (error) {
-      console.error("error na tela de login:", error);
       console.error(error.code);
-
       let mensagem;
       switch (error.code) {
         case "auth/invalid-credential":
           mensagem = "Dados inválidos!";
           break;
         case "auth/invalid-email":
-          mensagem = "Endereço de e-mail inválido!";
+          mensagem = "Endereço de e-mal inválido!";
           break;
+
         default:
           mensagem = "Houve um erro, tente mais tarde!";
           break;
@@ -56,9 +54,9 @@ export default function Login({navigation}) {
   const recuperarSenha = async () => {
     try {
       await sendPasswordResetEmail(auth, email);
-      Alert.alert("Recuperar senha", "Verifique sua caixa de e-mails.");
+      Alert.alert("Recuperar senha", "Verifique a sua caixa de e-mails!");
     } catch (error) {
-      console.error("error:", error); // Adicione este log
+      console.error(error);
     }
   };
 

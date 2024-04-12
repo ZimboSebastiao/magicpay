@@ -31,7 +31,6 @@ export default function App() {
       setUserLoggedIn(!!user);
     });
 
-    // Simulate a loading time for the splash screen
     setTimeout(() => {
       setShowSplash(false);
     }, 5000);
@@ -66,10 +65,10 @@ export default function App() {
       <StatusBar barStyle="black-content" />
       <NavigationContainer>
         <Tab.Navigator
-          initialRouteName="Home"
+          initialRouteName={isUserLoggedIn ? "Home" : "Login"}
           screenOptions={{
             tabBarStyle: {
-              backgroundColor: "rgba(49, 49, 49, 0.9)",
+              backgroundColor: "rgba(0, 0, 0, 0.9)",
               borderTopLeftRadius: 20,
               borderTopRightRadius: 20,
               borderBottomLeftRadius: 20,

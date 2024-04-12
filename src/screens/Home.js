@@ -1,10 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import transacaoImage from "../../assets/images/transacao.png";
-
 import { auth } from "../../firebase.config";
-
-
 import {
   Avatar,
   AvatarFallbackText,
@@ -33,7 +30,13 @@ import {
 } from "@gluestack-ui/themed";
 import { config } from "@gluestack-ui/config";
 
-const Home = () => {
+
+
+const Home = ({ navigation }) => {
+
+    // Acessando dados do usuário logado
+    console.log(auth.currentUser);
+
   const { email, displayName: nome } = auth.currentUser;
   return (
     <GluestackUIProvider config={config}>
