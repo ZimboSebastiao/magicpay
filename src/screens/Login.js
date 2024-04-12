@@ -8,22 +8,15 @@ import {
   Text,
 } from "react-native";
 import { Image } from "react-native";
-
-
-
-// Importando os recursos de autenticação
 import { auth } from "../../firebase.config";
-// console.log("auth:", auth);
-
 import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-
 import { useState } from "react";
-
 import logo from "../../assets/images/logo.png";
 import Cadastro from "../screens/Cadastro.js";
+
 
 export default function Login({navigation}) {
   const [email, setEmail] = useState("");
@@ -38,9 +31,10 @@ export default function Login({navigation}) {
 
     try {
       await signInWithEmailAndPassword(auth, email, senha);
+      
       navigation.navigate("Home");
     } catch (error) {
-      console.error("error:", error); // Adicione este log
+      console.error("error na tela de login:", error);
       console.error(error.code);
 
       let mensagem;

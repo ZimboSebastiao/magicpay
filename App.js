@@ -1,12 +1,12 @@
 import { StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 
 import {
-
   Icon,
   SettingsIcon
 } from "@gluestack-ui/themed";
@@ -19,6 +19,7 @@ import Configuracoes from  "./src/screens/Configuracoes";
 import Splash from "./src/screens/Splash"
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator(); 
 
 export default function App() {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
@@ -33,32 +34,29 @@ export default function App() {
     // Simulate a loading time for the splash screen
     setTimeout(() => {
       setShowSplash(false);
-    }, 4000);
+    }, 5000);
     return unsubscribe;
   }, []);
 
-
-  
-    if (showSplash) {
-      return <Splash />;
-    }
+  if (showSplash) {
+    return <Splash />;
+  }
 
   if (!isUserLoggedIn) {
     return (
       <NavigationContainer>
-        <Tab.Navigator>
-
-          <Tab.Screen
+        <Stack.Navigator>
+          <Stack.Screen
             name="Login"
             component={Login}
             options={{ headerShown: false }}
           />
-          <Tab.Screen
+          <Stack.Screen
             name="Cadastro"
             component={Cadastro}
             options={{ headerShown: false }}
           />
-        </Tab.Navigator>
+        </Stack.Navigator>
       </NavigationContainer>
     );
   }
@@ -66,20 +64,19 @@ export default function App() {
   return (
     <>
       <StatusBar barStyle="black-content" />
-      <NavigationContainer  >
+      <NavigationContainer>
         <Tab.Navigator
           initialRouteName="Home"
           screenOptions={{
             tabBarStyle: {
               backgroundColor: "rgba(49, 49, 49, 0.9)",
-              borderTopLeftRadius: 20, 
+              borderTopLeftRadius: 20,
               borderTopRightRadius: 20,
-              borderBottomLeftRadius: 20, 
+              borderBottomLeftRadius: 20,
               borderBottomRightRadius: 20,
               marginVertical: 10,
               margin: 4,
             },
-            
           }}
         >
           <Tab.Screen
@@ -117,3 +114,8 @@ export default function App() {
     </>
   );
 }
+
+
+
+
+
