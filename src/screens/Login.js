@@ -25,7 +25,7 @@ import { useState } from "react";
 import logo from "../../assets/images/logo.png";
 import Cadastro from "../screens/Cadastro.js";
 
-export default function Login() {
+export default function Login({navigation}) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
