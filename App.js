@@ -19,6 +19,7 @@ import Transferencia from "./src/screens/Transferencia";
 import Configuracoes from  "./src/screens/Configuracoes";
 import Splash from "./src/screens/Splash"
 import Historico from "./src/screens/Historico";
+import Transacao from "./src/screens/Transacao";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator(); 
@@ -57,6 +58,7 @@ export default function App() {
             component={Cadastro}
             options={{ headerShown: false }}
           />
+
         </Stack.Navigator>
       </NavigationContainer>
     );
@@ -103,6 +105,16 @@ export default function App() {
           <Tab.Screen
             name="Historico"
             component={Historico}
+            options={{
+              headerShown: false,
+              tabBarIcon: () => (
+                <Icon as={RepeatIcon} m="2" w="$19" h="$20" color="gray" />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Transação"
+            component={Transacao}
             options={{
               headerShown: false,
               tabBarIcon: () => (
