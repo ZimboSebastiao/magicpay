@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { auth } from "../../firebase.config";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import { CircleUser } from 'lucide-react';
+import { CircleUser, Globe, Headset, LogOut, ChevronRight  } from 'lucide-react-native';
 
 import { ButtonText, Button, VStack, HStack, Avatar, AvatarFallbackText, AvatarBadge, Icon, GluestackUIProvider, } from "@gluestack-ui/themed";
 import { config } from "@gluestack-ui/config";
@@ -35,28 +35,35 @@ export default function Configuracoes() {
 
 
       <Button style={estilos.botao} >
-        <ButtonText>
-        <CircleUser />
+        <CircleUser color="#3B40FF" size={38}/>
+        <ButtonText style={estilos.botaoTexto}>
           Minha conta
         </ButtonText>
+        <ChevronRight color="#787373" size={34} />
       </Button>
 
       <Button style={estilos.botao}>
-        <ButtonText>
+      <Globe  color="#3B40FF" size={38} />
+        <ButtonText style={estilos.botaoTexto} >
           Idioma
         </ButtonText>
+        <ChevronRight color="#787373" size={34} />
       </Button>
 
       <Button style={estilos.botao}>
-        <ButtonText>
+        <Headset color="#3B40FF" size={38} />
+        <ButtonText style={estilos.botaoTexto}>
           Suporte
         </ButtonText>
+        <ChevronRight color="#787373" size={34} />
       </Button>
 
       <Button style={estilos.botao} onPress={logout}>
-        <ButtonText>
+        <LogOut color="#3B40FF" size={38} />
+        <ButtonText style={estilos.botaoTexto}>
           Sair
         </ButtonText>
+        <ChevronRight color="#17191F" size={34} />
       </Button>
 
       </View>
@@ -105,11 +112,18 @@ const estilos = {
     fontWeight: "bold",
   },
   botoes: {
-    backgroundColor: "red",
-    padding: 24,
+    padding: 10,
   },
   botao: {
     backgroundColor: "#17191F",
     marginBottom: 45,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginLeft: 10,
+    alignItems: "center",
+
+  },
+  botaoTexto: {
+    width: "60%"
   }
 };
