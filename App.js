@@ -1,4 +1,4 @@
-import { StatusBar } from "react-native";
+import { StatusBar, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -67,12 +67,16 @@ export default function App() {
   return (
     <>
       <StatusBar barStyle="black-content" />
+        
       <NavigationContainer>
+
+        
         <Tab.Navigator
           initialRouteName={isUserLoggedIn ? "Home" : "Login"}
           screenOptions={{
             tabBarStyle: {
-              backgroundColor: "rgba(0, 0, 0, 0.9)",
+              display: "flex", // Manter o mesmo comportamento de exibição
+              backgroundColor: "rgba(0, 0, 0, 0.9)", // Cor de fundo do TabBar
               borderTopLeftRadius: 20,
               borderTopRightRadius: 20,
               borderBottomLeftRadius: 20,
@@ -80,6 +84,7 @@ export default function App() {
               marginVertical: 10,
               margin: 4,
             },
+      
           }}
         >
           <Tab.Screen
