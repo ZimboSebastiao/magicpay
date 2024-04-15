@@ -1,3 +1,4 @@
+
 // "./src/screens/Home.js"
 
 import React from "react";
@@ -35,13 +36,11 @@ import {
 import { config } from "@gluestack-ui/config";
 
 
-
 const Home = () => {
 
     // Acessando dados do usuário logado
     console.log(auth.currentUser);
     const navigation = useNavigation();
-
   const { email, displayName: nome } = auth.currentUser;
   return (
     <GluestackUIProvider config={config}>
@@ -119,6 +118,7 @@ const Home = () => {
         </View>
 
         <View>
+
         <TouchableOpacity
             
             onPress={() => navigation.navigate("Transacao")} 
@@ -147,6 +147,7 @@ const Home = () => {
               </Text>
             </View>
           </Card>
+
         </TouchableOpacity>
         </View>
       </View>

@@ -68,14 +68,17 @@ export default function Login({ navigation }) {
           <TextInput
             onChangeText={(valor) => setEmail(valor)}
             placeholder="E-mail"
-            style={estilos.input}
+            placeholderTextColor="white" // Cor do texto do placeholder
+            style={[estilos.input, { color: "white" }]}
           />
           <TextInput
             onChangeText={(valor) => setSenha(valor)}
             placeholder="Senha"
-            style={estilos.input}
+            placeholderTextColor="white" // Cor do texto do placeholder
+            style={[estilos.input, { color: "white" }]}
             secureTextEntry
           />
+
           <View>
             <Pressable style={estilos.botaoRecuperar} onPress={recuperarSenha}>
               <Text style={estilos.textoBotaoRecuperar}>Esqueceu a senha?</Text>
@@ -83,15 +86,6 @@ export default function Login({ navigation }) {
 
             <Pressable style={estilos.botoes} onPress={login}>
               <Text style={estilos.textoBotao}>Login</Text>
-            </Pressable>
-
-            <Pressable style={estilos.botaoCadastro} onPress={Cadastro}>
-              <Text
-                style={estilos.textoBotaoCadastro}
-                onPress={() => navigation.navigate("Cadastro")}
-              >
-                Não tem cadastro? Então Cadastre-se !!!
-              </Text>
             </Pressable>
           </View>
         </View>
@@ -103,7 +97,7 @@ export default function Login({ navigation }) {
 const estilos = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#000",
   },
   background: {
     justifyContent: "center",
@@ -124,17 +118,17 @@ const estilos = StyleSheet.create({
   input: {
     borderWidth: 1,
     padding: 15,
-    borderColor: "#000",
-    borderRadius: 40,
-    marginVertical: 20,
+    borderColor: "#ccc",
+    borderRadius: 7,
+    marginVertical: 15,
   },
   botoes: {
     borderWidth: 1,
-    padding: 15,
-    borderColor: "#B22222",
-    borderRadius: 40,
-    marginVertical: 20,
-    backgroundColor: "#B22222",
+    padding: 10,
+    borderColor: "#FF7E3F",
+    borderRadius: 7,
+    marginVertical: 10,
+    backgroundColor: "#FF7E3F",
     alignItems: "center",
   },
   textoBotao: {
@@ -150,7 +144,7 @@ const estilos = StyleSheet.create({
   textoBotaoRecuperar: {
     fontSize: 15,
     fontWeight: "bold",
-    color: "grey",
+    color: "#fff",
   },
   botaoCadastro: {
     padding: 0,
@@ -159,6 +153,6 @@ const estilos = StyleSheet.create({
   },
   textoBotaoCadastro: {
     fontSize: 14,
-    color: "#2f2e2e",
+    color: "#fff",
   },
 });

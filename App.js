@@ -5,13 +5,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { FontAwesome } from "@expo/vector-icons";
-
-import { Icon, SettingsIcon, RepeatIcon } from "@gluestack-ui/themed";
-
 import Cadastro from "./src/screens/Cadastro";
 import Login from "./src/screens/Login";
-import Home from "./src/screens/Home";
 import Transferencia from "./src/screens/Transferencia";
+import Gestao from "./src/screens/Gestao";
+const Tab = createBottomTabNavigator();
+import { Icon, SettingsIcon, RepeatIcon } from "@gluestack-ui/themed";
+import Home from "./src/screens/Home";
 import Configuracoes from "./src/screens/Configuracoes";
 import Splash from "./src/screens/Splash";
 import Historico from "./src/screens/Historico";
@@ -49,11 +49,11 @@ export default function App() {
             component={Login}
             options={{ headerShown: false }}
           />
-          <Stack.Screen
             name="Cadastro"
             component={Cadastro}
             options={{ headerShown: false }}
           />
+
         </Stack.Navigator>
       </NavigationContainer>
     );
