@@ -6,23 +6,19 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 
-import {
-  Icon,
-  SettingsIcon,
-  RepeatIcon
-} from "@gluestack-ui/themed";
+import { Icon, SettingsIcon, RepeatIcon } from "@gluestack-ui/themed";
 
 import Cadastro from "./src/screens/Cadastro";
 import Login from "./src/screens/Login";
-import Home from "./src/screens/Home"
+import Home from "./src/screens/Home";
 import Transferencia from "./src/screens/Transferencia";
-import Configuracoes from  "./src/screens/Configuracoes";
-import Splash from "./src/screens/Splash"
+import Configuracoes from "./src/screens/Configuracoes";
+import Splash from "./src/screens/Splash";
 import Historico from "./src/screens/Historico";
 import Transacao from "./src/screens/Transacao";
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator(); 
+const Stack = createStackNavigator();
 
 export default function App() {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
@@ -36,7 +32,7 @@ export default function App() {
 
     setTimeout(() => {
       setShowSplash(false);
-    }, 5000);
+    }, 4300);
     return unsubscribe;
   }, []);
 
@@ -58,7 +54,6 @@ export default function App() {
             component={Cadastro}
             options={{ headerShown: false }}
           />
-
         </Stack.Navigator>
       </NavigationContainer>
     );
@@ -67,10 +62,8 @@ export default function App() {
   return (
     <>
       <StatusBar barStyle="black-content" />
-        
-      <NavigationContainer>
 
-        
+      <NavigationContainer>
         <Tab.Navigator
           initialRouteName={isUserLoggedIn ? "Home" : "Login"}
           screenOptions={{
@@ -84,7 +77,6 @@ export default function App() {
               marginVertical: 10,
               margin: 4,
             },
-      
           }}
         >
           <Tab.Screen
@@ -142,8 +134,3 @@ export default function App() {
     </>
   );
 }
-
-
-
-
-
