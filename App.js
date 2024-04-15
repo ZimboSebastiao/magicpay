@@ -3,9 +3,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from "react";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth"; // Importa métodos de autenticação do Firebase
-import { useState, useEffect } from "react"; // Importa hooks do React
-import Icon from "react-native-vector-icons/MaterialIcons"; // Importa o ícone de logout
 import { FontAwesome } from "@expo/vector-icons";
 
 import { Icon, SettingsIcon } from "@gluestack-ui/themed";
