@@ -116,14 +116,16 @@ const estilos = {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#000", // Cor de fundo clara
+    backgroundColor: "#000", // Cor de fundo escura
+
   },
   entrada: {
     height: 60,
     paddingHorizontal: 50,
     textAlign: "center",
     fontSize: 30,
-    backgroundColor: "#fff", // Cor de fundo branca
+    backgroundColor: "#fff", // Cor de fundo
+
     borderRadius: 10, // Borda arredondada
     marginBottom: 20, // Espaçamento inferior
     elevation: 3, // Sombra para levantar o campo
@@ -136,19 +138,19 @@ const estilos = {
   },
   botaoNumero: {
     borderWidth: 0, // Sem borda
-    padding: 20,
+
     margin: 10, // Espaçamento entre os botões
-    borderRadius: 50, // Borda arredondada para botões circulares
-    width: 60, // Tamanho fixo para botões circulares
-    height: 60, // Tamanho fixo para botões circulares
-    backgroundColor: "#fe7251", // Cor de fundo vermelha
+    borderRadius: 10, // Borda arredondada para botões
+    width: 60, // Tamanho fixo para botões
+    height: 60, // Tamanho fixo para botões
+    backgroundColor: "#FF7E3F", // Cor de fundo
     elevation: 3, // Sombra para levantar o botão
     justifyContent: "center",
     alignItems: "center",
   },
   botaoNumeroTexto: {
     fontSize: 18,
-    color: "#fff", // Cor do texto branca
+    color: "#fff", // Cor do texto
     fontFamily: "Roboto", // Fonte do texto
     textAlign: "center", // Alinhamento no centro
   },
@@ -156,10 +158,10 @@ const estilos = {
     borderWidth: 0, // Sem borda
     padding: 20,
     margin: 10, // Espaçamento entre os botões
-    borderRadius: 50, // Borda arredondada para botões circulares
-    width: 60, // Tamanho fixo para botões circulares
-    height: 60, // Tamanho fixo para botões circulares
-    backgroundColor: "#fe7251", // Cor de fundo vermelha
+    borderRadius: 10, // Borda arredondada para botões
+    width: 60, // Tamanho fixo para botões
+    height: 60, // Tamanho fixo para botões
+    backgroundColor: "#FF7E3F", // Cor de fundo
     elevation: 3, // Sombra para levantar o botão
     justifyContent: "center",
     alignItems: "center",
@@ -172,14 +174,14 @@ const estilos = {
   },
   botaoGerar: {
     paddingVertical: 15,
-    paddingHorizontal: 30,
-    backgroundColor: "#fe7251", // Cor de fundo vermelha
+    paddingHorizontal: 70,
+    backgroundColor: "#fe7251", // Cor de fundo
     borderRadius: 10, // Borda arredondada
     elevation: 3, // Sombra para levantar o botão
   },
   botaoGerarTexto: {
     fontSize: 18,
-    color: "#fff", // Cor do texto branca
+    color: "#fff", // Cor do texto
     fontFamily: "Roboto", // Fonte do texto
   },
 };

@@ -17,7 +17,7 @@ function Logout({ navigation }) {
     logout();
   }, []);
 
-  return null; // renderiza nada
+  return null;
 }
 
 export default Logout;

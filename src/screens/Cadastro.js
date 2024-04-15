@@ -83,14 +83,16 @@ export default function Cadastro({ navigation }) {
         <View style={estilos.formulario}>
           <TextInput
             placeholder="Nome Completo"
-            style={estilos.input}
+            placeholderTextColor="white"
+            style={[estilos.input, { color: "white" }]}
             keyboardType="default"
             onChangeText={(valor) => setNome(valor)}
           />
 
           <TextInput
             placeholder="Seu E-mail"
-            style={estilos.input}
+            placeholderTextColor="white"
+            style={[estilos.input, { color: "white" }]}
             keyboardType="email-address"
             onChangeText={(valor) => setEmail(valor)}
           />
@@ -98,7 +100,8 @@ export default function Cadastro({ navigation }) {
           <TextInput
             onChangeText={(valor) => setSenha(valor)}
             placeholder="Nova Senha"
-            style={estilos.input}
+            placeholderTextColor="white"
+            style={[estilos.input, { color: "white" }]}
             secureTextEntry
           />
           <View>
@@ -115,7 +118,7 @@ export default function Cadastro({ navigation }) {
 const estilos = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#000",
   },
   background: {
     justifyContent: "center",
@@ -134,7 +137,7 @@ const estilos = StyleSheet.create({
     textAlign: "center",
     fontSize: 27,
     fontWeight: "bold",
-    color: "#B22222",
+    color: "#FF7E3F",
   },
   formulario: {
     marginVertical: 30,
@@ -146,18 +149,18 @@ const estilos = StyleSheet.create({
   input: {
     borderWidth: 1,
     padding: 15,
-    borderColor: "#000",
-    borderRadius: 40,
+    borderColor: "#ccc",
+    borderRadius: 7,
     marginVertical: 10,
     height: 47,
   },
   botoes: {
     borderWidth: 1,
     padding: 15,
-    borderColor: "#B22222",
-    borderRadius: 40,
+    borderColor: "#FF7E3F",
+    borderRadius: 7,
     marginVertical: 20,
-    backgroundColor: "#B22222",
+    backgroundColor: "#FF7E3F",
     alignItems: "center",
   },
   botaoRecuperar: {
