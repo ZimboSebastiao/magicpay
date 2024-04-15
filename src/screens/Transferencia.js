@@ -117,6 +117,7 @@ const estilos = {
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#000", // Cor de fundo escura
+
   },
   entrada: {
     height: 60,
@@ -124,6 +125,7 @@ const estilos = {
     textAlign: "center",
     fontSize: 30,
     backgroundColor: "#fff", // Cor de fundo
+
     borderRadius: 10, // Borda arredondada
     marginBottom: 20, // Espaçamento inferior
     elevation: 3, // Sombra para levantar o campo
@@ -136,6 +138,7 @@ const estilos = {
   },
   botaoNumero: {
     borderWidth: 0, // Sem borda
+
     margin: 10, // Espaçamento entre os botões
     borderRadius: 10, // Borda arredondada para botões
     width: 60, // Tamanho fixo para botões
@@ -165,7 +168,7 @@ const estilos = {
   },
   botaoApagarTexto: {
     fontSize: 24,
-    color: "#fff", // Cor do texto
+    color: "#fff", // Cor do texto branca
     fontFamily: "Roboto", // Fonte do texto
     textAlign: "center", // Alinhamento no centro
   },
