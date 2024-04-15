@@ -15,8 +15,8 @@ import {
 } from "firebase/auth";
 import { useState } from "react";
 import logo from "../../assets/images/logo.png";
+import { LinkText } from "@gluestack-ui/themed";
 import Cadastro from "../screens/Cadastro.js";
-
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
@@ -81,11 +81,26 @@ export default function Login({ navigation }) {
 
           <View>
             <Pressable style={estilos.botaoRecuperar} onPress={recuperarSenha}>
-              <Text style={estilos.textoBotaoRecuperar}>Esqueceu a senha?</Text>
+              <Text style={estilos.textoBotaoRecuperar}>Recuperar a senha</Text>
             </Pressable>
 
             <Pressable style={estilos.botoes} onPress={login}>
               <Text style={estilos.textoBotao}>Login</Text>
+            </Pressable>
+
+            <Pressable
+              style={estilos.textoBotaoCadastro}
+              onPress={recuperarSenha}
+            >
+              <Text style={{ color: "white" }}>
+                Ainda não possui cadastro?{" "}
+                <Text
+                  style={estilos.textoBotaoCadastro}
+                  onPress={() => navigation.navigate("Cadastro")}
+                >
+                  Cadastre-se!
+                </Text>
+              </Text>
             </Pressable>
           </View>
         </View>
@@ -114,6 +129,8 @@ const estilos = StyleSheet.create({
   },
   formulario: {
     padding: 10,
+
+    marginVertical: 50,
   },
   input: {
     borderWidth: 1,
@@ -144,7 +161,8 @@ const estilos = StyleSheet.create({
   textoBotaoRecuperar: {
     fontSize: 15,
     fontWeight: "bold",
-    color: "#fff",
+    color: "#6495ED",
+    textDecorationLine: "underline",
   },
   botaoCadastro: {
     padding: 0,
@@ -152,7 +170,10 @@ const estilos = StyleSheet.create({
     alignItems: "center",
   },
   textoBotaoCadastro: {
-    fontSize: 14,
-    color: "#fff",
+    fontSize: 15,
+    fontWeight: "bold",
+    color: "#6495ED",
+    textDecorationLine: "underline",
+    alignItems: "center",
   },
 });

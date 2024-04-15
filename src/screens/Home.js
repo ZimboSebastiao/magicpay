@@ -1,4 +1,3 @@
-
 // "./src/screens/Home.js"
 
 import React from "react";
@@ -6,7 +5,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import transacaoImage from "../../assets/images/transacao.png";
 import { auth } from "../../firebase.config";
-import Transacao from "./Transacao";
+
 import {
   Avatar,
   AvatarFallbackText,
@@ -35,12 +34,10 @@ import {
 } from "@gluestack-ui/themed";
 import { config } from "@gluestack-ui/config";
 
-
 const Home = () => {
-
-    // Acessando dados do usuário logado
-    console.log(auth.currentUser);
-    const navigation = useNavigation();
+  // Acessando dados do usuário logado
+  console.log(auth.currentUser);
+  const navigation = useNavigation();
   const { email, displayName: nome } = auth.currentUser;
   return (
     <GluestackUIProvider config={config}>
@@ -118,37 +115,32 @@ const Home = () => {
         </View>
 
         <View>
-
-        <TouchableOpacity
-            
-            onPress={() => navigation.navigate("Transacao")} 
-          >
-          <Card
-            style={styles.cartaoTransacao}
-            p="$2"
-            maxWidth={360}
-            m="$3"
-            borderRadius="$full"
-          >
-            <View style={styles.imagemCartao}>
-              <Image
-                mb="$0"
-                h={40}
-                width={40}
-                source={transacaoImage}
-                alt="Icon de transação"
-              />
-            </View>
-            <View style={styles.textosCartao}>
-              <Text style={styles.textoTransacao}>Transações</Text>
-              <Text style={styles.textoRecebido}>
-                {" "}
-                R$0 000,00 recebido em abril
-              </Text>
-            </View>
-          </Card>
-
-        </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Gestao")}>
+            <Card
+              style={styles.cartaoTransacao}
+              p="$2"
+              maxWidth={360}
+              m="$3"
+              borderRadius="$full"
+            >
+              <View style={styles.imagemCartao}>
+                <Image
+                  mb="$0"
+                  h={40}
+                  width={40}
+                  source={transacaoImage}
+                  alt="Icon de transação"
+                />
+              </View>
+              <View style={styles.textosCartao}>
+                <Text style={styles.textoTransacao}>Transações</Text>
+                <Text style={styles.textoRecebido}>
+                  {" "}
+                  R$0 000,00 recebido em abril
+                </Text>
+              </View>
+            </Card>
+          </TouchableOpacity>
         </View>
       </View>
     </GluestackUIProvider>

@@ -9,13 +9,12 @@ import Cadastro from "./src/screens/Cadastro";
 import Login from "./src/screens/Login";
 import Transferencia from "./src/screens/Transferencia";
 import Gestao from "./src/screens/Gestao";
-const Tab = createBottomTabNavigator();
+
 import { Icon, SettingsIcon, RepeatIcon } from "@gluestack-ui/themed";
 import Home from "./src/screens/Home";
 import Configuracoes from "./src/screens/Configuracoes";
 import Splash from "./src/screens/Splash";
 import Historico from "./src/screens/Historico";
-import Transacao from "./src/screens/Transacao";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -49,11 +48,11 @@ export default function App() {
             component={Login}
             options={{ headerShown: false }}
           />
+          <Stack.Screen
             name="Cadastro"
             component={Cadastro}
             options={{ headerShown: false }}
           />
-
         </Stack.Navigator>
       </NavigationContainer>
     );
@@ -110,8 +109,8 @@ export default function App() {
             }}
           />
           <Tab.Screen
-            name="Transação"
-            component={Transacao}
+            name="Gestão"
+            component={Gestao}
             options={{
               headerShown: false,
               tabBarIcon: () => (
