@@ -1,22 +1,28 @@
-import { StatusBar } from "react-native";
+import { StatusBar, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { FontAwesome } from "@expo/vector-icons";
-
-import { Icon, SettingsIcon } from "@gluestack-ui/themed";
-
 import Cadastro from "./src/screens/Cadastro";
 import Login from "./src/screens/Login";
-import Home from "./src/screens/Home";
 import Transferencia from "./src/screens/Transferencia";
-import Configuracoes from "./src/screens/Configuracoes";
 import Gestao from "./src/screens/Gestao";
 const Tab = createBottomTabNavigator();
+import { Icon, SettingsIcon, RepeatIcon } from "@gluestack-ui/themed";
+import Home from "./src/screens/Home";
+import Configuracoes from "./src/screens/Configuracoes";
+import Splash from "./src/screens/Splash";
+import Historico from "./src/screens/Historico";
+import Transacao from "./src/screens/Transacao";
+
+const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 export default function App() {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
     const auth = getAuth();
@@ -24,24 +30,31 @@ export default function App() {
       setUserLoggedIn(!!user);
     });
 
+    setTimeout(() => {
+      setShowSplash(false);
+    }, 4300);
     return unsubscribe;
   }, []);
+
+  if (showSplash) {
+    return <Splash />;
+  }
 
   if (!isUserLoggedIn) {
     return (
       <NavigationContainer>
-        <Tab.Navigator>
-          <Tab.Screen
+        <Stack.Navigator>
+          <Stack.Screen
             name="Login"
             component={Login}
             options={{ headerShown: false }}
           />
-          <Tab.Screen
             name="Cadastro"
             component={Cadastro}
             options={{ headerShown: false }}
           />
-        </Tab.Navigator>
+
+        </Stack.Navigator>
       </NavigationContainer>
     );
   }
@@ -49,12 +62,14 @@ export default function App() {
   return (
     <>
       <StatusBar barStyle="black-content" />
+
       <NavigationContainer>
         <Tab.Navigator
-          initialRouteName="Home"
+          initialRouteName={isUserLoggedIn ? "Home" : "Login"}
           screenOptions={{
             tabBarStyle: {
-              backgroundColor: "rgba(49, 49, 49, 0.9)",
+              display: "flex", // Manter o mesmo comportamento de exibição
+              backgroundColor: "rgba(0, 0, 0, 0.9)", // Cor de fundo do TabBar
               borderTopLeftRadius: 20,
               borderTopRightRadius: 20,
               borderBottomLeftRadius: 20,
@@ -85,12 +100,22 @@ export default function App() {
             }}
           />
           <Tab.Screen
-            name="Gestao"
-            component={Gestao} // Adicionando a tela de gestão de lucros ao Tab Navigator
+            name="Historico"
+            component={Historico}
             options={{
               headerShown: false,
               tabBarIcon: () => (
-                <FontAwesome name="line-chart" size={20} color="grey" />
+                <Icon as={RepeatIcon} m="2" w="$19" h="$20" color="gray" />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Transação"
+            component={Transacao}
+            options={{
+              headerShown: false,
+              tabBarIcon: () => (
+                <Icon as={RepeatIcon} m="2" w="$19" h="$20" color="gray" />
               ),
             }}
           />
