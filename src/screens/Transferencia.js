@@ -1,10 +1,16 @@
+// ./src/screens/Transferencia
+
+
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { FontAwesome6 } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+
 
 export default function Transferencia() {
   const [valor, setValor] = useState("");
   const [mostrarBotaoGerar, setMostrarBotaoGerar] = useState(false);
+  const navigation = useNavigation();
 
   const adicionarNumero = (numero) => {
     let novoValor = valor.replace("R$ ", "").replace(".", "").replace(",", "");
@@ -93,7 +99,7 @@ export default function Transferencia() {
     <View style={estilos.container}>
       <TextInput
         style={estilos.entrada}
-        placeholder="Valor a transferir"
+        placeholder="Valor a receber"
         value={valor}
         keyboardType="numeric"
         onChangeText={(texto) => setValor(texto)}
@@ -101,7 +107,7 @@ export default function Transferencia() {
       {renderizarNumeros()}
       {mostrarBotaoGerar && (
         <TouchableOpacity
-          onPress={() => console.log("Transferência realizada!")}
+        onPress={() => navigation.navigate('PagamentoQR')}
           style={estilos.botaoGerar}
         >
           <Text style={{ color: "#FFF" }}>Gerar Qr Code</Text>
@@ -109,14 +115,17 @@ export default function Transferencia() {
       )}
     </View>
   );
+  
 }
+
+
 
 const estilos = {
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#000", // Cor de fundo escura
+    backgroundColor: "#282A37", // Cor de fundo escura
 
   },
   entrada: {

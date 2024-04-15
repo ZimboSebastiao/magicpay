@@ -150,7 +150,7 @@ const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "black",
+    backgroundColor: "#282A37",
   },
 
   usuarioAvatar: {

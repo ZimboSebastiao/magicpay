@@ -1,3 +1,4 @@
+// ./App.js
 import { StatusBar, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -8,6 +9,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import Cadastro from "./src/screens/Cadastro";
 import Login from "./src/screens/Login";
 import Transferencia from "./src/screens/Transferencia";
+import PagamentoQR from "./src/screens/PagamentoQR";
 import Gestao from "./src/screens/Gestao";
 
 import { Icon, SettingsIcon, RepeatIcon } from "@gluestack-ui/themed";
@@ -66,16 +68,12 @@ export default function App() {
         <Tab.Navigator
           initialRouteName={isUserLoggedIn ? "Home" : "Login"}
           screenOptions={{
+            // tabBarBadge: 3,
             tabBarStyle: {
-              display: "flex", // Manter o mesmo comportamento de exibição
-              backgroundColor: "rgba(0, 0, 0, 0.9)", // Cor de fundo do TabBar
-              borderTopLeftRadius: 20,
-              borderTopRightRadius: 20,
-              borderBottomLeftRadius: 20,
-              borderBottomRightRadius: 20,
-              marginVertical: 10,
-              margin: 4,
+              backgroundColor: "black",
             },
+            tabBarActiveBackgroundColor: "#282A37",
+            tabBarActiveTintColor: "white",
           }}
         >
           <Tab.Screen
@@ -89,7 +87,7 @@ export default function App() {
             }}
           />
           <Tab.Screen
-            name="Transferencia"
+            name="Pagamento"
             component={Transferencia}
             options={{
               headerShown: false,
@@ -108,7 +106,7 @@ export default function App() {
               ),
             }}
           />
-          <Tab.Screen
+          {/* <Tab.Screen
             name="Gestão"
             component={Gestao}
             options={{
@@ -117,9 +115,9 @@ export default function App() {
                 <Icon as={RepeatIcon} m="2" w="$19" h="$20" color="gray" />
               ),
             }}
-          />
+          /> */}
           <Tab.Screen
-            name="Configuracoes"
+            name="Configurações"
             component={Configuracoes}
             options={{
               headerShown: false,
@@ -128,7 +126,9 @@ export default function App() {
               ),
             }}
           />
+
         </Tab.Navigator>
+
       </NavigationContainer>
     </>
   );
