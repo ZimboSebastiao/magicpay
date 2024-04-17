@@ -1,56 +1,148 @@
-import React, { useState } from "react";
-import { auth } from "../../firebase.config";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import { CircleUser, Globe, Headset, LogOut, ChevronRight  } from 'lucide-react-native';
-
-import { Input, InputIcon, InputSlot, SearchIcon, InputField } from "@gluestack-ui/themed";
+import React, { useState } from 'react';
+import { View, Alert, Image, Text, TextInput } from 'react-native';
+import { Input, InputField, GluestackUIProvider, ButtonText, Button, Modal, ModalBackdrop, Heading, CloseIcon, Icon, ModalCloseButton, ModalHeader, ModalFooter, ModalContent, ModalBody, Center } from '@gluestack-ui/themed';
 import { config } from "@gluestack-ui/config";
+import axios from 'axios';
 
 
+const PagamentoQR = () => {
+  const [valor, setValor] = useState('');
+  const [chave, setChave] = useState('');
+  const [infoAdicionais, setInfoAdicionais] = useState('');
+  const [imageQrCode, setImageQrCode] = useState(null);
 
-export default function PagamentoQR() {
-  const { email, displayName: nome } = auth.currentUser;
+  const generatePixCharge = async () => {
+    try {
+      const payload = {
+        calendario: {
+          expiracao: 3600,
+        },
+        valor: {
+          original: valor,
+        },
+        chave,
+        infoAdicionais: [
+          {
+            nome: 'Produto/Serviço',
+            valor: infoAdicionais,
+          },
+        ],
+      };
+
+      const response = await axios.post('https://api-pix-j9w9.onrender.com/create-charge', payload);
+      const pixId = response.data.loc.id;
+      const qrCodeResponse = await axios.get(`https://api-pix-j9w9.onrender.com/get-qrcode/${pixId}`);
+      setImageQrCode(qrCodeResponse.data.imagemQrcode);
+    } catch (error) {
+      Alert.alert('Erro ao gerar cobrança Pix', error.message);
+    }
+  };
+
+
 
   return (
-    <>
-    
-      <View style={estilos.container}>
-        <Text style={estilos.titulo}>QR Code gerado</Text>
 
-      
+    <View style={estilos.container}>
+      <Text style={estilos.titulo}> criar QR CODE </Text>
+
+        <View style={{justifyContent: "center", alignItems: "center"}}>
+        {imageQrCode && <Image source={{ uri: imageQrCode }} style={{ width: 200, height: 200 }} />}
+        </View>
+
+      <View style={estilos.viewInputs}>
+
+        <View style={estilos.viewInput}>
+          <Text style={estilos.viewTexto}>Chave Pix</Text>
+          <TextInput
+            style={estilos.campoInput}
+            placeholder="Sua chave pix"
+            placeholderTextColor="white"
+            onChangeText={setChave}
+          />
+           
+        </View>
+
+        <View style={estilos.viewInput}>
+          <Text style={estilos.viewTexto}>Qual o valor a receber?</Text>
+          <TextInput
+            style={estilos.campoInput}
+            placeholder="R$ 0,00"
+            placeholderTextColor="white"
+            keyboardType="numeric"
+            onChangeText={setValor}
+          />
+          
+        </View>
+
+        <View style={estilos.viewInput}>
+          <Text style={estilos.viewTexto}>Descrição</Text>
+          <TextInput
+            style={estilos.campoInput}
+            placeholder="ex: Refrigerante"
+            placeholderTextColor="white"
+            onChangeText={setInfoAdicionais}
+          />
+        </View>
+
+      <View style={estilos.botao}>
+
+      <Button  onPress={generatePixCharge}>
+      <ButtonText>Gerar QRcode </ButtonText>
+      </Button>
       </View>
-    </>
+      </View>
+    
+
+    </View>
+
+
   );
-}
+};
+
 
 const estilos = {
   container: {
     flex: 1,
-    backgroundColor: "#17191F",
+    backgroundColor: "#303030",
   },
   titulo: {
-    fontSize: 17,
-    textAlign: "center",
     color: "white",
-    paddingTop: 20,
+    fontSize: 23,
+    fontWeight: "bold",
+    marginVertical: 30,
+    marginHorizontal: 20
   },
-  pesquisa: {
-    justifyContent: "center",
-    alignItems: "center",
-    marginVertical: 20,
+  viewInputs: {
+    marginVertical: 30,
+    marginHorizontal: 20,
   },
-  pesquisaInput: {
-    width: "90%",
-    backgroundColor: "#282A37",
-    borderWidth: 1,
-    borderColor: "#282A37",
-    flexDirection: "row-reverse",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: 11,
-    borderRadius: 10
+  textoInput: {
+    color: "white",
+
+    
   },
-  textoCampo: {
-    color: "white"
-  }
+  campoInput: {
+    borderBottomWidth: 1, 
+    borderBottomColor: "white", 
+    marginBottom: 10, 
+    color: "white",
+    fontSize: 16,
+    fontStyle: "italic"
+  }, 
+  botao: {
+    marginVertical: 100
+  },
+   viewInput: {
+    marginBottom: 40
+   },
+   viewTexto: {
+    marginBottom: 8,
+    color: "white",
+    fontSize: 20,
+    fontWeight: "bold"
+
+   }
 };
+
+
+export default PagamentoQR;

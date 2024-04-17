@@ -88,7 +88,7 @@ export default function App() {
           />
           <Tab.Screen
             name="Pagamento"
-            component={Transferencia}
+            component={PagamentoQR}
             options={{
               headerShown: false,
               tabBarIcon: () => (
