@@ -7,6 +7,7 @@ import {
   Headset,
   LogOut,
   ChevronRight,
+  Navigation,
 } from "lucide-react-native";
 
 import {
@@ -22,14 +23,16 @@ import {
 } from "@gluestack-ui/themed";
 import { config } from "@gluestack-ui/config";
 import { logout } from "../components/Logout";
+import { ScrollView } from "react-native";
 
-export default function Configuracoes() {
+export default function Configuracoes({ navigation }) {
+  console.log(navigation);
   const { email, displayName: nome } = auth.currentUser;
 
   return (
     <>
       <GluestackUIProvider config={config}>
-        <View style={estilos.container}>
+        <ScrollView style={estilos.container}>
           <View style={estilos.avatarUser}>
             <VStack space="2xl">
               <HStack space="md">
@@ -50,31 +53,52 @@ export default function Configuracoes() {
           </View>
 
           <View style={estilos.botoes}>
-            <Button style={estilos.botao}>
-              <CircleUser color="#3B40FF" size={38} />
+            <Button
+              style={estilos.botao}
+              onPress={() => {
+                navigation.navigate("MinhaConta");
+
+                // console.log("suporte");
+              }}
+            >
+              <CircleUser color="#FF7E3F" size={38} />
               <ButtonText style={estilos.botaoTexto}>Minha conta</ButtonText>
-              <ChevronRight color="#787373" size={34} />
+              <ChevronRight color="#FF7E3F" size={34} />
             </Button>
 
-            <Button style={estilos.botao}>
-              <Globe color="#3B40FF" size={38} />
+            <Button
+              style={estilos.botao}
+              onPress={() => {
+                navigation.navigate("Idiomas");
+
+                // console.log("suporte");
+              }}
+            >
+              <Globe color="#FF7E3F" size={38} />
               <ButtonText style={estilos.botaoTexto}>Idioma</ButtonText>
-              <ChevronRight color="#787373" size={34} />
+              <ChevronRight color="#FF7E3F" size={34} />
             </Button>
 
-            <Button style={estilos.botao}>
-              <Headset color="#3B40FF" size={38} />
+            <Button
+              style={estilos.botao}
+              onPress={() => {
+                navigation.navigate("Suporte");
+
+                // console.log("suporte");
+              }}
+            >
+              <Headset color="#FF7E3F" size={38} />
               <ButtonText style={estilos.botaoTexto}>Suporte</ButtonText>
-              <ChevronRight color="#787373" size={34} />
+              <ChevronRight color="#FF7E3F" size={34} />
             </Button>
 
             <Button style={estilos.botao} onPress={logout}>
-              <LogOut color="#3B40FF" size={38} />
+              <LogOut color="#FF7E3F" size={38} />
               <ButtonText style={estilos.botaoTexto}>Sair</ButtonText>
-              <ChevronRight color="#17191F" size={34} />
+              <ChevronRight color="#FF7E3F" size={34} />
             </Button>
           </View>
-        </View>
+        </ScrollView>
       </GluestackUIProvider>
     </>
   );

@@ -17,6 +17,9 @@ import Home from "./src/screens/Home";
 import Configuracoes from "./src/screens/Configuracoes";
 import Splash from "./src/screens/Splash";
 import Historico from "./src/screens/Historico";
+import Suporte from "./src/screens/Suporte";
+import Idiomas from "./src/screens/Idiomas";
+import MinhaConta from "./src/screens/MinhaConta";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -127,8 +130,22 @@ export default function App() {
             }}
           />
 
+          <Tab.Screen
+            name="Suporte"
+            component={Suporte}
+            options={{ headerShown: false, tabBarButton: () => null }}
+          />
+          <Tab.Screen
+            name="Idiomas"
+            component={Idiomas}
+            options={{ headerShown: false, tabBarButton: () => null }}
+          />
+          <Tab.Screen
+            name="MinhaConta"
+            component={MinhaConta}
+            options={{ headerShown: false, tabBarButton: () => null }}
+          />
         </Tab.Navigator>
-
       </NavigationContainer>
     </>
   );
