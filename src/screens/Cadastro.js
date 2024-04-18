@@ -137,6 +137,18 @@ export default function Cadastro({ navigation }) {
             <Pressable style={estilos.botoes} onPress={cadastrar}>
               <Text style={estilos.textoBotao}>Cadastrar</Text>
             </Pressable>
+
+            <View style={{justifyContent: "center", alignItems: "center"}}>
+            <Text style={{ color: "#151515", fontWeight: "bold" }}>
+                Já possui uma conta?{" "}
+                <Text
+                  style={estilos.textoBotaoCadastro}
+                  onPress={() => navigation.navigate("Login")}
+                >
+                  Faça o seu Login
+                </Text>
+            </Text>
+            </View>
           </View>
         </View>
       </ScrollView>
@@ -212,5 +224,11 @@ const estilos = StyleSheet.create({
   labeltexto: {
     fontSize: 18,
     fontWeight: "bold",
+  },
+  textoBotaoCadastro: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: "#538dfd",
+    alignItems: "center",
   },
 });

@@ -125,7 +125,7 @@ export default function Login({ navigation }) {
                   style={estilos.textoBotaoCadastro}
                   onPress={() => navigation.navigate("Cadastro")}
                 >
-                  Cadastre-se!
+                  Cadastre-se
                 </Text>
               </Text>
             </Pressable>
