@@ -51,7 +51,7 @@ const Home = () => {
             </Text>
           </View> */}
 
-          <Pressable onPress={() => {navigation.navigate("Pagamento")}}>           
+          <Pressable onPress={() => {navigation.navigate("Pix")}}>           
             <ScanBarcode color="#538dfd" />          
           </Pressable>
 

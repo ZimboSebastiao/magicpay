@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { auth } from "../../firebase.config";
 import { View, Text, TextInput, TouchableOpacity, Pressable } from "react-native";
-import { ScanBarcode, Send  } from 'lucide-react-native';
-
+import { ScanBarcode, Send, RotateCcw, Search  } from 'lucide-react-native';
+import { useNavigation } from "@react-navigation/native";
 import { Input, InputIcon, InputSlot, SearchIcon, InputField } from "@gluestack-ui/themed";
 import { config } from "@gluestack-ui/config";
 
@@ -10,7 +10,7 @@ import { config } from "@gluestack-ui/config";
 
 export default function Historico() {
   const { email, displayName: nome } = auth.currentUser;
-
+  const navigation = useNavigation();
   return (
     <>
     
@@ -22,11 +22,11 @@ export default function Historico() {
         <View style={estilos.botoes}>
 
         <Pressable style={estilos.botao}>
-          <ScanBarcode color="#538dfd" size={25}/>
-          <Text style={estilos.textosCartao}>Pagar</Text>
+          <RotateCcw color="#538dfd" size={25}/>
+          <Text style={estilos.textosCartao}>devolver</Text>
         </Pressable>
 
-        <Pressable style={estilos.botao}>
+        <Pressable style={estilos.botao} onPress={() => {navigation.navigate("Pix")}} >
           <ScanBarcode color="#538dfd" size={25}/>
           <Text style={estilos.textosCartao}>Pagar</Text>
         </Pressable>
@@ -37,14 +37,21 @@ export default function Historico() {
         </Pressable>
         </View>
 
+        {/* INPUT DE PESQUISA */}
         <View style={estilos.pesquisa}>
-        <Input style={estilos.pesquisaInput}  variant="rounded"  size="lg">
-          <InputSlot pl="$3">
-            <InputIcon as={SearchIcon} />
-          </InputSlot>
-          <InputField style={estilos.textoCampo} placeholder="Buscar por Nome ou Chave Pix" />
-        </Input>
+          <Input style={estilos.pesquisaInput}  variant="rounded"  size="lg">
+            <InputSlot pl="$3">
+            <Search color="#6f6f6f" m="$2" w="$3" h="$3" />
+            </InputSlot>
+            <InputField style={estilos.textoCampo} placeholder="Buscar por Nome" />
+          </Input>
         </View>
+
+        <View style={{ justifyContent: "space-between", alignItems: "center", flexDirection: "row", padding: 10}}>
+          <Text style={{ color: "#151515", fontWeight: "bold", fontSize: 18}}>Transações Recentes</Text>
+          <Text style={{color: "#538dfd", fontWeight: "bold", fontSize: 14}}>Ver Mais</Text>
+        </View>
+
 
       
       </View>
@@ -90,7 +97,7 @@ const estilos = {
     justifyContent: "center", 
     alignItems: "center", 
     backgroundColor: "#e4ecff",
-    width: "12%",
+    width: "13%",
     borderRadius: 10,
     marginLeft: 19
   },
@@ -101,19 +108,22 @@ const estilos = {
     justifyContent: "center",
     alignItems: "center",
     marginVertical: 20,
+    marginTop: 30,
   },
   pesquisaInput: {
-    width: "90%",
-    backgroundColor: "#282A37",
-    borderWidth: 1,
-    borderColor: "#282A37",
-    flexDirection: "row-reverse",
+    width: "95%",
+    backgroundColor: "#ffffff",
+    borderWidth: 2,
+    elevation: 3,
+    borderColor: "#ffffff",
+    flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: 11,
+    padding: 3,
     borderRadius: 10
   },
   textoCampo: {
-    color: "white"
+    color: "#6f6f6f",
+
   }
 };
