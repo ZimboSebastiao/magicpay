@@ -108,7 +108,7 @@ export default function App() {
             options={{
               headerShown: false,
               tabBarIcon: () => (
-                <Wallet size={27} color="gray" />
+                <Wallet size={27} color="#538dfd" />
               ),
             }}
           />
@@ -119,7 +119,7 @@ export default function App() {
             options={{
               headerShown: false,
               tabBarIcon: () => (
-                <QrCode size={27} color="grey" />
+                <QrCode size={27} color="#538dfd" />
               ),
             }}
           />
@@ -140,7 +140,7 @@ export default function App() {
             options={{
               headerShown: false,
               tabBarIcon: () => (
-                <UserCog size={27} color="gray" />
+                <UserCog size={27} color="#538dfd" />
               ),
             }}
           />
