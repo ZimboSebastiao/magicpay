@@ -6,6 +6,7 @@ import {
   TextInput,
   View,
   Text,
+  ScrollView,
 } from "react-native";
 import * as React from 'react';
 import { Checkbox } from 'react-native-paper';
@@ -65,7 +66,7 @@ export default function Login({ navigation }) {
 
   return (
     <>
-      <View style={estilos.container}>
+      <ScrollView style={estilos.container}>
         <Image style={estilos.logo} source={logo} />
         <Text style={{fontWeight: "bold", fontSize: 20, textAlign: "center"}}>Faça login na sua conta</Text>
         <View style={estilos.formulario}>
@@ -130,7 +131,7 @@ export default function Login({ navigation }) {
             </Pressable>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 }

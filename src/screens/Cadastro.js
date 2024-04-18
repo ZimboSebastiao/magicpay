@@ -13,7 +13,7 @@ import {
 
 import { Image } from "react-native";
 
-import destaque from "../../assets/images/cadastro.gif";
+import destaque from "../../assets/images/logo.png";
 
 export default function Cadastro({ navigation }) {
   const [nome, setNome] = useState("");
@@ -78,32 +78,61 @@ export default function Cadastro({ navigation }) {
       <ScrollView style={estilos.container}>
         <View>
           <Image style={estilos.destaque} source={destaque} />
-          <Text style={estilos.titulo}>Cadastro</Text>
+          <Text style={{fontWeight: "bold", fontSize: 20, textAlign: "center"}}>Criar uma conta</Text>
         </View>
         <View style={estilos.formulario}>
-          <TextInput
-            placeholder="Nome Completo"
-            placeholderTextColor="white"
-            style={[estilos.input, { color: "white" }]}
-            keyboardType="default"
-            onChangeText={(valor) => setNome(valor)}
-          />
 
-          <TextInput
-            placeholder="Seu E-mail"
-            placeholderTextColor="white"
-            style={[estilos.input, { color: "white" }]}
-            keyboardType="email-address"
-            onChangeText={(valor) => setEmail(valor)}
-          />
+          <View>
+            <Text style={estilos.labeltexto}>Nome Completo</Text>
+            <TextInput
+              placeholder="Seu nome"
+              placeholderTextColor="#6f6f6f"
+              style={[estilos.input, { color: "#6f6f6f" }]}
+              keyboardType="default"
+              onChangeText={(valor) => setNome(valor)}
+            />
+          </View>
 
-          <TextInput
-            onChangeText={(valor) => setSenha(valor)}
-            placeholder="Nova Senha"
-            placeholderTextColor="white"
-            style={[estilos.input, { color: "white" }]}
-            secureTextEntry
-          />
+          <View>
+            <Text style={estilos.labeltexto}>E-mail</Text>
+            <TextInput
+              placeholder="Seu E-mail"
+              placeholderTextColor="#6f6f6f"
+              style={[estilos.input, { color: "#6f6f6f" }]}
+              keyboardType="email-address"
+              onChangeText={(valor) => setEmail(valor)}
+            />
+          </View>
+          <View>
+            <Text style={estilos.labeltexto}>CPF</Text>
+            <TextInput
+              placeholder="CPF"
+              placeholderTextColor="#6f6f6f"
+              style={[estilos.input, { color: "#6f6f6f" }]}
+              keyboardType="numeric" 
+            />
+          </View>
+
+          <View>
+            <Text style={estilos.labeltexto}>Sua Chave Pix</Text>
+            <TextInput
+              placeholder="Chave pix do banco Efí"
+              placeholderTextColor="#6f6f6f"
+              style={[estilos.input, { color: "#6f6f6f" }]}
+              keyboardType="email-address"
+            />
+          </View>
+
+          <View>
+            <Text style={estilos.labeltexto}>Palavra-Passe</Text>
+            <TextInput
+              onChangeText={(valor) => setSenha(valor)}
+              placeholder="Nova Senha"
+              placeholderTextColor="#6f6f6f"
+              style={[estilos.input, { color: "#6f6f6f" }]}
+              secureTextEntry
+            />
+          </View>
           <View>
             <Pressable style={estilos.botoes} onPress={cadastrar}>
               <Text style={estilos.textoBotao}>Cadastrar</Text>
@@ -128,10 +157,10 @@ const estilos = StyleSheet.create({
     height: "35%",
   },
   destaque: {
-    width: 210,
-    height: 250,
+    marginTop: 30,
+    width: 200,
+    height: 200,
     alignSelf: "center",
-    marginVertical: 20,
   },
   titulo: {
     textAlign: "center",
@@ -149,10 +178,11 @@ const estilos = StyleSheet.create({
   input: {
     borderWidth: 1,
     padding: 15,
-    borderColor: "#ccc",
+    borderColor: "#ffffff",
+    backgroundColor: "#ffffff",
+    color: "#6f6f6f",
     borderRadius: 7,
-    marginVertical: 10,
-    height: 47,
+    marginVertical: 15,
   },
   botoes: {
     borderWidth: 1,
@@ -178,5 +208,9 @@ const estilos = StyleSheet.create({
     fontSize: 14,
     fontWeight: "bold",
     color: "grey",
+  },
+  labeltexto: {
+    fontSize: 18,
+    fontWeight: "bold",
   },
 });
