@@ -35,7 +35,7 @@ export default function Login({ navigation }) {
 
     try {
       await signInWithEmailAndPassword(auth, email, senha);
-      navigation.replace("Home");
+      navigation.navigate("Home");
     } catch (error) {
       console.error(error.code);
       let mensagem;
