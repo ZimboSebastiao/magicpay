@@ -67,7 +67,7 @@ export default function Login({ navigation }) {
     <>
       <View style={estilos.container}>
         <Image style={estilos.logo} source={logo} />
-        <Text style={{fontWeight: "bold", fontSize: 24, textAlign: "center"}}>Faça login na sua conta</Text>
+        <Text style={{fontWeight: "bold", fontSize: 20, textAlign: "center"}}>Faça login na sua conta</Text>
         <View style={estilos.formulario}>
 
           <View style={estilos.inputs}>
@@ -148,15 +148,14 @@ const estilos = StyleSheet.create({
     height: "35%",
   },
   logo: {
-    width: 300,
-    height: 100,
+    marginTop: 30,
+    width: 200,
+    height: 200,
     alignSelf: "center",
-    marginVertical: 50,
   },
   formulario: {
-    padding: 10,
-
-    marginVertical: 50,
+    padding: 15,
+    marginVertical: 25,
   },
   input: {
     borderWidth: 1,
