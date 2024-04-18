@@ -58,6 +58,11 @@ export default function App() {
             component={Cadastro}
             options={{ headerShown: false }}
           />
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{ headerShown: false }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );
@@ -73,10 +78,16 @@ export default function App() {
           screenOptions={{
             // tabBarBadge: 3,
             tabBarStyle: {
-              backgroundColor: "black",
+              backgroundColor: "#FFFFFF",
+              height: 65,
             },
-            tabBarActiveBackgroundColor: "#282A37",
-            tabBarActiveTintColor: "white",
+            tabBarActiveBackgroundColor: "#f0f4f8",
+            tabBarActiveTintColor: "#538dfd",
+            tabBarInactiveTintColor: "#151515",
+            tabBarLabelStyle: {
+              fontSize: 14,
+              fontWeight: "bold"
+            },
           }}
         >
           <Tab.Screen
@@ -85,7 +96,7 @@ export default function App() {
             options={{
               headerShown: false,
               tabBarIcon: ({ focused, size }) => (
-                <FontAwesome name="home" size={20} color="grey" />
+                <FontAwesome name="home" size={27} color="#538dfd" />
               ),
             }}
           />

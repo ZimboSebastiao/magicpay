@@ -1,24 +1,17 @@
 // "./src/screens/Home.js"
 
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Pressable, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import transacaoImage from "../../assets/images/transacao.png";
 import { auth } from "../../firebase.config";
+import { ScanBarcode, Bell, Search, CircleDollarSign, HandCoins, SquareSplitHorizontal, ScanSearch, ScanText, RefreshCcwDot, Barcode, Banknote } from 'lucide-react-native';
+import { Input, InputSlot, InputField } from "@gluestack-ui/themed";
 
 import {
   Avatar,
   AvatarFallbackText,
-  Image,
-  Box,
-  VStack,
-  Badge,
-  BadgeText,
-  Button,
-  ButtonText,
   GluestackUIProvider,
   Icon,
-  BellIcon,
   Card,
   Select,
   SelectTrigger,
@@ -41,46 +34,43 @@ const Home = () => {
   const { email, displayName: nome } = auth.currentUser;
   return (
     <GluestackUIProvider config={config}>
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
+
         {/* CABEÇALHO - AVATAR - NOTIFICAÇÃOS*/}
         <View style={styles.usuarioAvatar}>
           <Avatar bgColor="$amber600" size="md" borderRadius="$full">
             <AvatarFallbackText>{nome || "Visitante"}</AvatarFallbackText>
           </Avatar>
 
-          <View>
+            <Text style={{color: "#151515", fontWeight: "bold", fontSize: 15}}>Olá, Bem-Vindo de Volta!!</Text>
+            
+          {/* <View>
             <Text style={styles.textoHeader}>Balanço Total</Text>
             <Text style={styles.textoValor}>
               R$0 000,00 - <Text style={styles.textoPorcetagem}>0,0 (0%)</Text>{" "}
             </Text>
-          </View>
+          </View> */}
 
-          <Box alignItems="center">
-            <VStack>
-              <Badge
-                h={22}
-                w={22}
-                bg="$red600"
-                borderRadius="$full"
-                mb={-14}
-                mr={-14}
-                zIndex={1}
-                variant="solid"
-                alignSelf="flex-end"
-              >
-                <BadgeText color="$white">2</BadgeText>
-              </Badge>
-              <Button style={styles.notificacao}>
-                <ButtonText>
-                  {" "}
-                  <Icon as={BellIcon} m="$2" w="$5" h="$5" />
-                </ButtonText>
-              </Button>
-            </VStack>
-          </Box>
+          <Pressable onPress={() => {navigation.navigate("Pagamento")}}>           
+            <ScanBarcode color="#538dfd" />          
+          </Pressable>
+
+          <Pressable >
+            <Bell m="$2" w="$5" h="$5" color="#538dfd" />
+          </Pressable>
         </View>
 
-        {/* CARD DE SALDO MONETÁRIO */}
+         {/* INPUT DE PESQUISA */}
+        <View style={styles.pesquisa}>
+        <Input style={styles.pesquisaInput}  variant="rounded"  size="lg">
+          <InputSlot pl="$3">
+          <Search color="#6f6f6f" m="$2" w="$3" h="$3" />
+          </InputSlot>
+          <InputField style={styles.textoCampo} placeholder="Buscar por Nome ou Chave Pix" />
+        </Input>
+        </View>
+
+         {/* CARD DE SALDO MONETÁRIO */}
         <View>
           <Card
             style={styles.cartao}
@@ -114,35 +104,79 @@ const Home = () => {
           </Card>
         </View>
 
+         {/* CARD DE GESTÃO DE PIX */}
         <View>
-          <TouchableOpacity onPress={() => navigation.navigate("Gestao")}>
-            <Card
-              style={styles.cartaoTransacao}
-              p="$2"
-              maxWidth={360}
-              m="$3"
-              borderRadius="$full"
-            >
-              <View style={styles.imagemCartao}>
-                <Image
-                  mb="$0"
-                  h={40}
-                  width={40}
-                  source={transacaoImage}
-                  alt="Icon de transação"
-                />
-              </View>
-              <View style={styles.textosCartao}>
-                <Text style={styles.textoTransacao}>Transações</Text>
-                <Text style={styles.textoRecebido}>
-                  {" "}
-                  R$0 000,00 recebido em abril
-                </Text>
-              </View>
-            </Card>
-          </TouchableOpacity>
+          <Text style={{color: "#151515", fontWeight: "bold", fontSize: 17, marginTop: 40, padding: 2, margin: 7}}>Gestão de Pix</Text>
+          <Card
+            style={styles.cartaoTransacao}
+            p="$2"
+            maxWidth={360}
+            m="$3"
+          >
+           
+            <View style={styles.icones}>
+              
+              <Pressable style={{justifyContent: "center", alignItems: "center"}}>
+              <CircleDollarSign color="#538dfd" size={45}/>
+              <Text style={styles.textosCartao}>Status</Text>
+              </Pressable>
+
+              <Pressable style={{justifyContent: "center", alignItems: "center"}}>
+              <HandCoins color="#538dfd" size={45}/>
+              <Text style={styles.textosCartao}>Recebidos</Text>
+              </Pressable>
+
+              <Pressable style={{justifyContent: "center", alignItems: "center"}}>
+              <SquareSplitHorizontal color="#538dfd" size={45}/>
+              <Text style={styles.textosCartao}>Split</Text>
+              </Pressable>
+
+              <Pressable style={{justifyContent: "center", alignItems: "center"}}>
+              <ScanSearch color="#538dfd" size={45}/>
+              <Text style={styles.textosCartao}>Consultar</Text>
+              </Pressable>
+              
+            </View>
+          </Card>
         </View>
-      </View>
+
+         {/* CARD DE COBRANÇAS */}
+        <View>
+          <Text style={{color: "#151515", fontWeight: "bold", fontSize: 17, marginTop: 25, padding: 2, margin: 7}}>Cobranças</Text>
+          <Card
+            style={styles.cartaoTransacao}
+            p="$2"
+            maxWidth={360}
+            m="$3"
+          >
+           
+            <View style={styles.icones}>
+              
+              <Pressable style={{justifyContent: "center", alignItems: "center"}}>
+              <Barcode color="#538dfd" size={45}/>
+              <Text style={styles.textosCartao}>Boleto</Text>
+              </Pressable>
+
+              <Pressable style={{justifyContent: "center", alignItems: "center"}}>
+              <Banknote color="#538dfd" size={45}/>
+              <Text style={styles.textosCartao}>Pagamento</Text>
+              </Pressable>
+
+              <Pressable style={{justifyContent: "center", alignItems: "center"}}>
+              <ScanText color="#538dfd" size={45}/>
+              <Text style={styles.textosCartao}>Consultar</Text>
+              </Pressable>
+
+              <Pressable style={{justifyContent: "center", alignItems: "center"}}>
+              <RefreshCcwDot color="#538dfd" size={45}/>
+              <Text style={styles.textosCartao}>Status</Text>
+              </Pressable>
+              
+            </View>
+          </Card>
+        </View>
+
+      </ScrollView>
     </GluestackUIProvider>
   );
 };
@@ -150,20 +184,26 @@ const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#282A37",
+    backgroundColor: "#f0f4f8",
+    padding: 8,
   },
-
+  
   usuarioAvatar: {
-    marginVertical: 8,
+    marginTop: 20,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: 8,
-    margin: 8,
+    margin: 10,
+    
   },
   notificacao: {
-    backgroundColor: "#7C807C",
-    borderRadius: 100,
+    backgroundColor: "blue",
+    borderRadius: 150,
+    padding: 0,
+    margin: 0,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center"
   },
   textoHeader: {
     color: "#7C807C",
@@ -180,8 +220,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   cartao: {
-    backgroundColor: "#FF7E3F",
-    marginVertical: 40,
+    backgroundColor: "#538dfd",
+    marginTop: 16,
   },
   imagemCartao: {
     backgroundColor: "#9C9C9C",
@@ -192,25 +232,39 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   textoCartao: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "bold",
+    color: "#454545",
   },
   textoCartaoValor: {
-    fontSize: 35,
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#f0f4f8",
+    marginBottom: 20,
   },
   selecao: {
-    backgroundColor: "black",
-    borderColor: "black",
+    backgroundColor: "#454545",
+    borderColor: "#454545",
   },
   selecaoConteudo: {
     color: "white",
   },
   cartaoTransacao: {
-    backgroundColor: "#454545",
+    backgroundColor: "#ffffff",
     flexDirection: "row",
+    elevation: 3,
   },
   textosCartao: {
-    paddingLeft: 10,
+    color: "#6f6f6f",
+    fontWeight: "bold",
+    fontSize: 15,
+    textAlign: "center",
+  },
+  icones: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%"
   },
   textoTransacao: {
     color: "white",
@@ -219,6 +273,27 @@ const styles = StyleSheet.create({
   textoRecebido: {
     color: "#828282",
   },
+  pesquisa: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginVertical: 20,
+  },
+  pesquisaInput: {
+    width: "95%",
+    backgroundColor: "#ffffff",
+    borderWidth: 2,
+    elevation: 3,
+    borderColor: "#ffffff",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 3,
+    borderRadius: 10
+  },
+  textoCampo: {
+    color: "#6f6f6f",
+
+  }
 });
 
 export default Home;
