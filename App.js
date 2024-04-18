@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import Cadastro from "./src/screens/Cadastro";
 import Login from "./src/screens/Login";
+import { QrCode, Wallet, UserCog } from 'lucide-react-native';
 import Transferencia from "./src/screens/Transferencia";
 import PagamentoQR from "./src/screens/PagamentoQR";
 import Gestao from "./src/screens/Gestao";
@@ -100,26 +101,29 @@ export default function App() {
               ),
             }}
           />
+
           <Tab.Screen
-            name="Pagamento"
-            component={PagamentoQR}
-            options={{
-              headerShown: false,
-              tabBarIcon: () => (
-                <FontAwesome name="money" size={20} color="grey" />
-              ),
-            }}
-          />
-          <Tab.Screen
-            name="Historico"
+            name="Carteira"
             component={Historico}
             options={{
               headerShown: false,
               tabBarIcon: () => (
-                <Icon as={RepeatIcon} m="2" w="$19" h="$20" color="gray" />
+                <Wallet size={27} color="gray" />
               ),
             }}
           />
+
+          <Tab.Screen
+            name="Pix"
+            component={PagamentoQR}
+            options={{
+              headerShown: false,
+              tabBarIcon: () => (
+                <QrCode size={27} color="grey" />
+              ),
+            }}
+          />
+
           {/* <Tab.Screen
             name="Gestão"
             component={Gestao}
@@ -131,12 +135,12 @@ export default function App() {
             }}
           /> */}
           <Tab.Screen
-            name="Configurações"
+            name="Perfil"
             component={Configuracoes}
             options={{
               headerShown: false,
               tabBarIcon: () => (
-                <Icon as={SettingsIcon} m="2" w="$19" h="$20" color="gray" />
+                <UserCog size={27} color="gray" />
               ),
             }}
           />
