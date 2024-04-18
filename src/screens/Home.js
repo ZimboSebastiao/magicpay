@@ -117,22 +117,22 @@ const Home = () => {
             <View style={styles.icones}>
               
               <Pressable style={{justifyContent: "center", alignItems: "center"}}>
-              <CircleDollarSign color="#538dfd" size={45}/>
+              <CircleDollarSign color="#538dfd" size={35}/>
               <Text style={styles.textosCartao}>Status</Text>
               </Pressable>
 
               <Pressable style={{justifyContent: "center", alignItems: "center"}}>
-              <HandCoins color="#538dfd" size={45}/>
+              <HandCoins color="#538dfd" size={35}/>
               <Text style={styles.textosCartao}>Recebidos</Text>
               </Pressable>
 
               <Pressable style={{justifyContent: "center", alignItems: "center"}}>
-              <SquareSplitHorizontal color="#538dfd" size={45}/>
+              <SquareSplitHorizontal color="#538dfd" size={35}/>
               <Text style={styles.textosCartao}>Split</Text>
               </Pressable>
 
               <Pressable style={{justifyContent: "center", alignItems: "center"}}>
-              <ScanSearch color="#538dfd" size={45}/>
+              <ScanSearch color="#538dfd" size={35}/>
               <Text style={styles.textosCartao}>Consultar</Text>
               </Pressable>
               
@@ -153,22 +153,22 @@ const Home = () => {
             <View style={styles.icones}>
               
               <Pressable style={{justifyContent: "center", alignItems: "center"}}>
-              <Barcode color="#538dfd" size={45}/>
+              <Barcode color="#538dfd" size={35}/>
               <Text style={styles.textosCartao}>Boleto</Text>
               </Pressable>
 
               <Pressable style={{justifyContent: "center", alignItems: "center"}}>
-              <Banknote color="#538dfd" size={45}/>
+              <Banknote color="#538dfd" size={35}/>
               <Text style={styles.textosCartao}>Pagamento</Text>
               </Pressable>
 
               <Pressable style={{justifyContent: "center", alignItems: "center"}}>
-              <ScanText color="#538dfd" size={45}/>
+              <ScanText color="#538dfd" size={35}/>
               <Text style={styles.textosCartao}>Consultar</Text>
               </Pressable>
 
               <Pressable style={{justifyContent: "center", alignItems: "center"}}>
-              <RefreshCcwDot color="#538dfd" size={45}/>
+              <RefreshCcwDot color="#538dfd" size={35}/>
               <Text style={styles.textosCartao}>Status</Text>
               </Pressable>
               
