@@ -7,6 +7,8 @@ import {
   View,
   Text,
 } from "react-native";
+import * as React from 'react';
+import { Checkbox } from 'react-native-paper';
 import { Image } from "react-native";
 import { auth } from "../../firebase.config";
 import {
@@ -21,6 +23,7 @@ import Cadastro from "../screens/Cadastro.js";
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [checked, setChecked] = React.useState(false);
 
   const login = async () => {
     if (!email || !senha) {
@@ -64,25 +67,48 @@ export default function Login({ navigation }) {
     <>
       <View style={estilos.container}>
         <Image style={estilos.logo} source={logo} />
+        <Text style={{fontWeight: "bold", fontSize: 24, textAlign: "center"}}>Faça login na sua conta</Text>
         <View style={estilos.formulario}>
-          <TextInput
-            onChangeText={(valor) => setEmail(valor)}
-            placeholder="E-mail"
-            placeholderTextColor="white" // Cor do texto do placeholder
-            style={[estilos.input, { color: "white" }]}
-          />
+
+          <View style={estilos.inputs}>
+            <Text style={estilos.titulo}>E-mail</Text>
+            <TextInput
+              onChangeText={(valor) => setEmail(valor)}
+              placeholder="Entre com seu e-mail"
+              placeholderTextColor="#6f6f6f" // Cor do texto do placeholder
+              style={[estilos.input, { color: "#6f6f6f" }]}
+            />
+          </View>
+
+          <View style={estilos.inputs}>
+          <Text style={estilos.titulo}>Palavra-passe</Text>
           <TextInput
             onChangeText={(valor) => setSenha(valor)}
-            placeholder="Senha"
-            placeholderTextColor="white" // Cor do texto do placeholder
-            style={[estilos.input, { color: "white" }]}
+            placeholder="Entre com a sua senha"
+            placeholderTextColor="#6f6f6f" // Cor do texto do placeholder
+            style={[estilos.input, { color: "#6f6f6f" }]}
             secureTextEntry
           />
+          </View>
 
           <View>
-            <Pressable style={estilos.botaoRecuperar} onPress={recuperarSenha}>
+            <View style={estilos.botaoRecuperar}>
+
+              <View style={estilos.textoBotaoLembrar}>
+              <Checkbox
+                status={checked ? 'checked' : 'unchecked'}
+                onPress={() => {
+                  setChecked(!checked);
+                }}
+              />
+              <Text style={estilos.textoBotaoRecuperar}>Lembra-me</Text>
+              </View>
+
+            <Pressable  onPress={recuperarSenha}>
               <Text style={estilos.textoBotaoRecuperar}>Recuperar a senha</Text>
             </Pressable>
+
+            </View>
 
             <Pressable style={estilos.botoes} onPress={login}>
               <Text style={estilos.textoBotao}>Login</Text>
@@ -92,7 +118,7 @@ export default function Login({ navigation }) {
               style={estilos.textoBotaoCadastro}
               onPress={recuperarSenha}
             >
-              <Text style={{ color: "white" }}>
+              <Text style={{ color: "#151515", fontWeight: "bold" }}>
                 Ainda não possui cadastro?{" "}
                 <Text
                   style={estilos.textoBotaoCadastro}
@@ -112,7 +138,7 @@ export default function Login({ navigation }) {
 const estilos = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000",
+    backgroundColor: "#F0F4F8",
   },
   background: {
     justifyContent: "center",
@@ -135,7 +161,9 @@ const estilos = StyleSheet.create({
   input: {
     borderWidth: 1,
     padding: 15,
-    borderColor: "#ccc",
+    borderColor: "#ffffff",
+    backgroundColor: "#ffffff",
+    color: "#6f6f6f",
     borderRadius: 7,
     marginVertical: 15,
   },
@@ -155,14 +183,22 @@ const estilos = StyleSheet.create({
   },
   botaoRecuperar: {
     padding: 0,
+    marginBottom: 30,
+    justifyContent: "space-between",
+    flexDirection: "row",
     marginVertical: 4,
-    alignItems: "flex-end",
+    alignItems: "center",
   },
   textoBotaoRecuperar: {
     fontSize: 15,
     fontWeight: "bold",
-    color: "#6495ED",
-    textDecorationLine: "underline",
+    color: "#6f6f6f",
+  },
+  textoBotaoLembrar: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    color: "#6f6f6f",
+    alignItems: "center",
   },
   botaoCadastro: {
     padding: 0,
@@ -172,8 +208,12 @@ const estilos = StyleSheet.create({
   textoBotaoCadastro: {
     fontSize: 15,
     fontWeight: "bold",
-    color: "#6495ED",
-    textDecorationLine: "underline",
+    color: "#538dfd",
     alignItems: "center",
   },
+  titulo: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+
 });
