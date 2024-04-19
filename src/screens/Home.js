@@ -1,6 +1,7 @@
 // "./src/screens/Home.js"
-
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
+import { format } from 'date-fns';
 import { View, Text, StyleSheet, TouchableOpacity, Pressable, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { auth } from "../../firebase.config";
@@ -32,6 +33,27 @@ const Home = () => {
   console.log(auth.currentUser);
   const navigation = useNavigation();
   const { email, displayName: nome } = auth.currentUser;
+  const [pixs, setPixs] = useState([]);
+
+  const formatarHorario = (horario) => {
+    return format(new Date(horario), "MMMM dd, yyyy hh:mm");
+  };
+
+  useEffect(() => {
+    async function fetchPixs() {
+      try {
+        const response = await axios.get('https://api-pix-j9w9.onrender.com/v2/pix');
+        console.log('Resposta da API Pix:', response.data);
+        setPixs(response.data.pix);
+         
+      } catch (error) {
+        console.error('Erro ao buscar Pixs:', error.message);
+      }
+    }
+    fetchPixs();
+  }, []);
+
+
   return (
     <GluestackUIProvider config={config}>
       <ScrollView style={styles.container}>
@@ -117,22 +139,22 @@ const Home = () => {
             <View style={styles.icones}>
               
               <Pressable style={{justifyContent: "center", alignItems: "center"}}>
-              <CircleDollarSign color="#538dfd" size={35}/>
+              <CircleDollarSign color="#538dfd" size={25}/>
               <Text style={styles.textosCartao}>Status</Text>
               </Pressable>
 
               <Pressable style={{justifyContent: "center", alignItems: "center"}}>
-              <HandCoins color="#538dfd" size={35}/>
+              <HandCoins color="#538dfd" size={25}/>
               <Text style={styles.textosCartao}>Recebidos</Text>
               </Pressable>
 
               <Pressable style={{justifyContent: "center", alignItems: "center"}}>
-              <SquareSplitHorizontal color="#538dfd" size={35}/>
+              <SquareSplitHorizontal color="#538dfd" size={25}/>
               <Text style={styles.textosCartao}>Split</Text>
               </Pressable>
 
               <Pressable style={{justifyContent: "center", alignItems: "center"}}>
-              <ScanSearch color="#538dfd" size={35}/>
+              <ScanSearch color="#538dfd" size={25}/>
               <Text style={styles.textosCartao}>Consultar</Text>
               </Pressable>
               
@@ -153,28 +175,45 @@ const Home = () => {
             <View style={styles.icones}>
               
               <Pressable style={{justifyContent: "center", alignItems: "center"}}>
-              <Barcode color="#538dfd" size={35}/>
+              <Barcode color="#538dfd" size={25}/>
               <Text style={styles.textosCartao}>Boleto</Text>
               </Pressable>
 
               <Pressable style={{justifyContent: "center", alignItems: "center"}}>
-              <Banknote color="#538dfd" size={35}/>
+              <Banknote color="#538dfd" size={25}/>
               <Text style={styles.textosCartao}>Pagamento</Text>
               </Pressable>
 
               <Pressable style={{justifyContent: "center", alignItems: "center"}}>
-              <ScanText color="#538dfd" size={35}/>
+              <ScanText color="#538dfd" size={25}/>
               <Text style={styles.textosCartao}>Consultar</Text>
               </Pressable>
 
               <Pressable style={{justifyContent: "center", alignItems: "center"}}>
-              <RefreshCcwDot color="#538dfd" size={35}/>
+              <RefreshCcwDot color="#538dfd" size={25}/>
               <Text style={styles.textosCartao}>Status</Text>
               </Pressable>
               
             </View>
           </Card>
         </View>
+
+        <View style={{ justifyContent: "space-between", alignItems: "center", flexDirection: "row", padding: 10 }}>
+            <Text style={{ color: "#151515", fontWeight: "bold", fontSize: 18}}>Transações Recentes</Text>
+          </View>
+
+          {pixs.map((pix, index) => (
+          <Card key={index} p="$4" maxWidth={360} m="$3">
+              <Pressable key={index} onPress={() => console.log(pix)}>
+                <View  style={{flexDirection: "row",justifyContent: "space-between", marginBottom: 6}}>
+                <Text style={{fontWeight: "bold", fontSize: 15}}>{` ${pix.chave}`}</Text>
+                <Text style={{fontWeight: "bold", fontSize: 15, color: "#367F04"}}>{`+ R$ ${pix.valor}`}</Text>
+
+                </View>
+                <Text style={{fontWeight: "bold", fontSize: 14, color: "#6f6f6f"}}>{`${formatarHorario(pix.horario)}`}</Text>
+              </Pressable>
+          </Card>
+            ))}
 
       </ScrollView>
     </GluestackUIProvider>

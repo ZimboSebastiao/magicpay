@@ -20,7 +20,7 @@ export default function Historico() {
   const [pixs, setPixs] = useState([]);
 
   const formatarHorario = (horario) => {
-    return format(new Date(horario), "MMMM dd, yyyy hh:mma");
+    return format(new Date(horario), "MMMM dd, yyyy hh:mm");
   };
 
   useEffect(() => {

@@ -97,7 +97,7 @@ export default function App() {
             options={{
               headerShown: false,
               tabBarIcon: ({ focused, size }) => (
-                <FontAwesome name="home" size={27} color="#538dfd" />
+                <FontAwesome name="home" size={27} color="#6f6f6f" />
               ),
             }}
           />
@@ -108,7 +108,7 @@ export default function App() {
             options={{
               headerShown: false,
               tabBarIcon: () => (
-                <Wallet size={27} color="#538dfd" />
+                <Wallet size={27} color="#6f6f6f" />
               ),
             }}
           />
@@ -119,7 +119,7 @@ export default function App() {
             options={{
               headerShown: false,
               tabBarIcon: () => (
-                <QrCode size={27} color="#538dfd" />
+                <QrCode size={27} color="#6f6f6f" />
               ),
             }}
           />
@@ -140,7 +140,7 @@ export default function App() {
             options={{
               headerShown: false,
               tabBarIcon: () => (
-                <UserCog size={27} color="#538dfd" />
+                <UserCog size={27} color="#6f6f6f" />
               ),
             }}
           />
