@@ -21,6 +21,7 @@
     "@react-navigation/stack": "^6.3.29",
     "@types/react": "~18.2.45",
     "axios": "^1.6.8",
+    "date-fns": "^3.6.0",
     "expo": "^49.0.23",
     "expo-av": "~13.10.5",
     "expo-calendar": "~12.2.1",

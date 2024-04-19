@@ -80,7 +80,7 @@ const Home = () => {
             m="$3"
           >
             <Text style={styles.textoCartao}>Saldo monetário</Text>
-            <Text style={styles.textoCartaoValor}> R$0 000,00</Text>
+            <Text style={styles.textoCartaoValor}> R$ 3.000,00</Text>
 
             <Select>
               <SelectTrigger style={styles.selecao} variant="rounded" size="sm">
