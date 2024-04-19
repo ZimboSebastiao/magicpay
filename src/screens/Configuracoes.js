@@ -3,11 +3,11 @@ import { auth } from "../../firebase.config";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import {
   CircleUser,
-  Globe,
-  Headset,
+  MessageCircleQuestion,
   LogOut,
   ChevronRight,
-  Navigation,
+  LockKeyhole,
+  CircleHelp,
 } from "lucide-react-native";
 
 import {
@@ -20,6 +20,7 @@ import {
   AvatarBadge,
   Icon,
   GluestackUIProvider,
+  Card,
 } from "@gluestack-ui/themed";
 import { config } from "@gluestack-ui/config";
 import { logout } from "../components/Logout";
@@ -33,10 +34,15 @@ export default function Configuracoes({ navigation }) {
     <>
       <GluestackUIProvider config={config}>
         <ScrollView style={estilos.container}>
+
+          <Text style={{textAlign: "center", fontSize: 20, fontWeight: "bold", color: "#151515", paddingTop: 30,}}>Perfil</Text>
+
+          <View style={estilos.avatarEtexto}>
+
           <View style={estilos.avatarUser}>
             <VStack space="2xl">
               <HStack space="md">
-                <Avatar bgColor="$indigo600" size="xl">
+                <Avatar bgColor="$indigo600" size="lg">
                   <AvatarFallbackText>{nome || "Visitante"}</AvatarFallbackText>
                   <AvatarBadge $dark-borderColor="$black" />
                 </Avatar>
@@ -52,50 +58,70 @@ export default function Configuracoes({ navigation }) {
             </View>
           </View>
 
+          </View>
+
+          <View style={{padding: 20}}>
+            <Card style={estilos.cartao}>
+              <View style={estilos.cartaoTitulo}>
+                 <Text style={estilos.tituloCor}>Saldo Atual</Text>
+                 <Text style={estilos.tituloCor}>Renda</Text>
+                 <Text style={estilos.tituloCor}>Despesa</Text>
+              </View>
+
+              <View style={estilos.cartaoValores}>
+                 <Text style={estilos.valoresCor}>R$ 3.000</Text>
+                 <Text style={estilos.valoresCor}>R$ 2.400</Text>
+                 <Text style={estilos.valoresCor}>R$ 5.400</Text>
+              </View>
+            </Card>
+          </View>
+
           <View style={estilos.botoes}>
             <Button
               style={estilos.botao}
               onPress={() => {
                 navigation.navigate("MinhaConta");
-
-                // console.log("suporte");
               }}
             >
-              <CircleUser color="#FF7E3F" size={38} />
-              <ButtonText style={estilos.botaoTexto}>Minha conta</ButtonText>
-              <ChevronRight color="#FF7E3F" size={34} />
+              <CircleUser color="#538dfd" size={26} />
+              <ButtonText color="#151515" style={estilos.botaoTexto}>Minha conta</ButtonText>
+              
+            </Button>
+
+            
+            <Button
+              style={estilos.botao}
+              onPress={() => {
+                navigation.navigate("Idiomas");
+              }}
+            >
+              <MessageCircleQuestion color="#538dfd" size={26} />
+              <ButtonText color="#151515" style={estilos.botaoTexto}>FAQs</ButtonText>
             </Button>
 
             <Button
               style={estilos.botao}
               onPress={() => {
                 navigation.navigate("Idiomas");
-
-                // console.log("suporte");
               }}
             >
-              <Globe color="#FF7E3F" size={38} />
-              <ButtonText style={estilos.botaoTexto}>Idioma</ButtonText>
-              <ChevronRight color="#FF7E3F" size={34} />
+              <LockKeyhole color="#538dfd" size={26} />
+              <ButtonText color="#151515" style={estilos.botaoTexto}>Política de Privacidade</ButtonText>
             </Button>
 
             <Button
               style={estilos.botao}
               onPress={() => {
                 navigation.navigate("Suporte");
-
-                // console.log("suporte");
               }}
             >
-              <Headset color="#FF7E3F" size={38} />
-              <ButtonText style={estilos.botaoTexto}>Suporte</ButtonText>
-              <ChevronRight color="#FF7E3F" size={34} />
+              <CircleHelp color="#538dfd" size={26} />
+              <ButtonText color="#151515" style={estilos.botaoTexto}>Central de Ajuda</ButtonText>
             </Button>
 
             <Button style={estilos.botao} onPress={logout}>
-              <LogOut color="#FF7E3F" size={38} />
-              <ButtonText style={estilos.botaoTexto}>Sair</ButtonText>
-              <ChevronRight color="#FF7E3F" size={34} />
+              <LogOut color="#538dfd" size={26} />
+              <ButtonText color="#151515" style={estilos.botaoTexto}>Sair</ButtonText>
             </Button>
           </View>
         </ScrollView>
@@ -107,42 +133,67 @@ export default function Configuracoes({ navigation }) {
 const estilos = {
   container: {
     flex: 1,
-    backgroundColor: "#17191F",
+    backgroundColor: "#f0f4f8",
   },
-  avatarUser: {
-    paddingTop: 60,
-    paddingBottom: 40,
-    backgroundColor: "rgba(0, 0, 0, 0.9)",
-    alignItems: "center",
+  avatarUser: { 
+    paddingTop: 20,
     justifyContent: "center",
+    alignItems: "center",
   },
   avatarTexto: {
-    alignItems: "center",
+    color: "#6f6f6f", 
+    marginTop: 5,
     justifyContent: "center",
-    marginVertical: 10,
+    alignItems: "center",
   },
   textoCor: {
-    color: "white",
-    fontSize: 17,
+    color: "#151515",
+    fontSize: 15,
     fontWeight: "bold",
   },
   cargoCor: {
-    color: "white",
+    color: "#6f6f6f",
     fontSize: 15,
+    fontWeight: "bold",
+  },
+  cartao: {
+    padding: 25,
+    backgroundColor: "#538dfd",
+  },
+  cartaoTitulo: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  tituloCor: {
+    color: "#ffffff",
+  },
+  cartaoValores: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 4,
+  },
+  valoresCor: {
+    color: "#ffffff",
+    fontSize: 18,
     fontWeight: "bold",
   },
   botoes: {
     padding: 10,
   },
   botao: {
-    backgroundColor: "#17191F",
-    marginBottom: 45,
+    backgroundColor: "#f0f4f8",
+    marginBottom: 20,
     flexDirection: "row",
-    justifyContent: "space-between",
-    marginLeft: 10,
+    justifyContent: "flex-start",
     alignItems: "center",
   },
   botaoTexto: {
-    width: "60%",
+    paddingLeft: 15,
+    fontWeight: "bold"
   },
+  avatarEtexto: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",    
+  }
 };
