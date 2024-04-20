@@ -43,7 +43,7 @@ const PagamentoQR = () => {
   return (
 
     <View style={estilos.container}>
-      <Text style={estilos.titulo}> criar QR CODE </Text>
+      <Text style={estilos.titulo}> Criar QR CODE </Text>
 
         <View style={{justifyContent: "center", alignItems: "center"}}>
         {imageQrCode && <Image source={{ uri: imageQrCode }} style={{ width: 200, height: 200 }} />}
@@ -56,7 +56,7 @@ const PagamentoQR = () => {
           <TextInput
             style={estilos.campoInput}
             placeholder="Sua chave pix"
-            placeholderTextColor="white"
+            placeholderTextColor="#151515"
             onChangeText={setChave}
           />
            
@@ -67,7 +67,7 @@ const PagamentoQR = () => {
           <TextInput
             style={estilos.campoInput}
             placeholder="R$ 0,00"
-            placeholderTextColor="white"
+            placeholderTextColor="#151515"
             keyboardType="numeric"
             onChangeText={setValor}
           />
@@ -75,11 +75,11 @@ const PagamentoQR = () => {
         </View>
 
         <View style={estilos.viewInput}>
-          <Text style={estilos.viewTexto}>Descrição</Text>
+          <Text style={estilos.viewTexto}>Produto</Text>
           <TextInput
             style={estilos.campoInput}
             placeholder="ex: Refrigerante"
-            placeholderTextColor="white"
+            placeholderTextColor="#151515"
             onChangeText={setInfoAdicionais}
           />
         </View>
@@ -103,10 +103,10 @@ const PagamentoQR = () => {
 const estilos = {
   container: {
     flex: 1,
-    backgroundColor: "#303030",
+    backgroundColor: "#f0f4f8",
   },
   titulo: {
-    color: "white",
+    color: "#151515",
     fontSize: 23,
     fontWeight: "bold",
     marginVertical: 30,
@@ -117,15 +117,15 @@ const estilos = {
     marginHorizontal: 20,
   },
   textoInput: {
-    color: "white",
+    color: "#151515",
 
     
   },
   campoInput: {
     borderBottomWidth: 1, 
-    borderBottomColor: "white", 
+    borderBottomColor: "#151515", 
     marginBottom: 10, 
-    color: "white",
+    color: "#151515",
     fontSize: 16,
     fontStyle: "italic"
   }, 
@@ -137,7 +137,7 @@ const estilos = {
    },
    viewTexto: {
     marginBottom: 8,
-    color: "white",
+    color: "#151515",
     fontSize: 20,
     fontWeight: "bold"
 
