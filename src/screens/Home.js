@@ -30,7 +30,7 @@ import { config } from "@gluestack-ui/config";
 
 const Home = () => {
   // Acessando dados do usuário logado
-  console.log(auth.currentUser);
+  // console.log(auth.currentUser);
   const navigation = useNavigation();
   const { email, displayName: nome } = auth.currentUser;
   const [pixs, setPixs] = useState([]);
@@ -41,14 +41,32 @@ const Home = () => {
 
   useEffect(() => {
     async function fetchPixs() {
-      try {
-        const response = await axios.get('https://api-pix-j9w9.onrender.com/v2/pix');
-        console.log('Resposta da API Pix:', response.data);
-        setPixs(response.data.pix);
+        try {
+            const response = await axios.get('https://api-pix-j9w9.onrender.com/pixListCobv');
+            // console.log('Resposta da API Pix:', response.data.cobs);
+            // Acessando informações do calendário para cada cobrança
+            response.data.cobs.forEach(cob => {
+                // const criacao = cob.calendario.criacao;
+                // const expiracao = cob.calendario.expiracao;
+                const txid = cob.txid;
+                const revisao = cob.revisao;
+                const status = cob.status;
+                const valorOriginal = cob.valor.original;
+                const chave = cob.chave;
+                // const devedorNome = cob.devedor.nome;
+                const infoAdicionais = cob.infoAdicionais;
+                const locationId = cob.loc.id;
+                const locationUrl = cob.loc.location;
+                const tipoCob = cob.loc.tipoCob;
+                const locCriacao = cob.loc.criacao;
+                const pixCopiaECola = cob.pixCopiaECola;
+            });
+
+            setPixs(response.data.cobs);
          
-      } catch (error) {
-        console.error('Erro ao buscar Pixs:', error.message);
-      }
+        } catch (error) {
+            console.error('Erro ao buscar Pixs:', error.message);
+        }
     }
     fetchPixs();
   }, []);
@@ -60,18 +78,12 @@ const Home = () => {
 
         {/* CABEÇALHO - AVATAR - NOTIFICAÇÃOS*/}
         <View style={styles.usuarioAvatar}>
-          <Avatar bgColor="$amber600" size="md" borderRadius="$full">
+          <Avatar bgColor="$indigo600" size="md" borderRadius="$full">
             <AvatarFallbackText>{nome || "Visitante"}</AvatarFallbackText>
           </Avatar>
 
-            <Text style={{color: "#151515", fontWeight: "bold", fontSize: 15}}>Olá, Bem-Vindo de Volta!!</Text>
+            <Text style={{color: "#151515", fontWeight: "bold", fontSize: 16}}>Olá, Bem-Vindo(a) de Volta!</Text>
             
-          {/* <View>
-            <Text style={styles.textoHeader}>Balanço Total</Text>
-            <Text style={styles.textoValor}>
-              R$0 000,00 - <Text style={styles.textoPorcetagem}>0,0 (0%)</Text>{" "}
-            </Text>
-          </View> */}
 
           <Pressable onPress={() => {navigation.navigate("Pix")}}>           
             <ScanBarcode color="#538dfd" />          
@@ -202,17 +214,18 @@ const Home = () => {
             <Text style={{ color: "#151515", fontWeight: "bold", fontSize: 18}}>Transações Recentes</Text>
           </View>
 
-          {pixs.map((pix, index) => (
-          <Card key={index} p="$4" maxWidth={360} m="$3">
-              <Pressable key={index} onPress={() => console.log(pix)}>
-                <View  style={{flexDirection: "row",justifyContent: "space-between", marginBottom: 6}}>
-                <Text style={{fontWeight: "bold", fontSize: 15}}>{` ${pix.chave}`}</Text>
-                <Text style={{fontWeight: "bold", fontSize: 15, color: "#367F04"}}>{`+ R$ ${pix.valor}`}</Text>
-
-                </View>
-                <Text style={{fontWeight: "bold", fontSize: 14, color: "#6f6f6f"}}>{`${formatarHorario(pix.horario)}`}</Text>
-              </Pressable>
-          </Card>
+           {/* Seu código de renderização aqui */}
+           {pixs.map((cob, index) => (
+                <Card key={index} p="$4" maxWidth={360} m="$3">
+                    <Pressable key={index} onPress={() => console.log(cob)}>
+                        <View  style={{flexDirection: "row",justifyContent: "space-between", marginBottom: 6}}>
+                            <Text style={{fontWeight: "bold", fontSize: 15}}>{` ${cob.status}`}</Text>
+                            <Text style={{fontWeight: "bold", fontSize: 15, color: "#367F04"}}>{`${cob.status}`}</Text>
+                            <Text style={{fontWeight: "bold", fontSize: 15, color: "#367F04"}}>{`+ R$ ${cob.valor.original}`}</Text>
+                        </View>
+                        {/* <Text style={{fontWeight: "bold", fontSize: 14, color: "#6f6f6f"}}>{`${formatarHorario(cob.status)}`} </Text> */}
+                    </Pressable>
+                </Card>
             ))}
 
       </ScrollView>

@@ -178,7 +178,7 @@ const estilos = {
     fontWeight: "bold",
   },
   botoes: {
-    padding: 10,
+    padding: 20,
   },
   botao: {
     backgroundColor: "#f0f4f8",
