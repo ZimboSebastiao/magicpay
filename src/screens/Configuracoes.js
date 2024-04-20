@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { auth } from "../../firebase.config";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import {
   CircleUser,
   MessageCircleQuestion,
   LogOut,
-  ChevronRight,
+  MapPinned,
   LockKeyhole,
   CircleHelp,
+  KeyRound,
 } from "lucide-react-native";
 
 import {
@@ -77,6 +78,7 @@ export default function Configuracoes({ navigation }) {
           </View>
 
           <View style={estilos.botoes}>
+
             <Button
               style={estilos.botao}
               onPress={() => {
@@ -85,6 +87,27 @@ export default function Configuracoes({ navigation }) {
             >
               <CircleUser color="#538dfd" size={26} />
               <ButtonText color="#151515" style={estilos.botaoTexto}>Minha conta</ButtonText>
+              
+            </Button>
+            <Button
+              style={estilos.botao}
+              onPress={() => {
+                navigation.navigate("MinhaConta");
+              }}
+            >
+              <MapPinned color="#538dfd" size={26} />
+              <ButtonText color="#151515" style={estilos.botaoTexto}>Endereço</ButtonText>
+              
+            </Button>
+
+            <Button
+              style={estilos.botao}
+              onPress={() => {
+                navigation.navigate("MinhaConta");
+              }}
+            >
+              <KeyRound color="#538dfd" size={26} />
+              <ButtonText color="#151515" style={estilos.botaoTexto}>Mudar Palavra-passe</ButtonText>
               
             </Button>
 

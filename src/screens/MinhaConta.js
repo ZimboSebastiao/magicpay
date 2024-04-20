@@ -3,12 +3,12 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 const MinhaConta = () => {
   const handleTrocarSenha = () => {
-    // Implemente a lógica para trocar a senha aqui
+    
     console.log("Trocar senha");
   };
 
   const handleTrocarNome = () => {
-    // Implemente a lógica para trocar o nome aqui
+  
     console.log("Trocar nome");
   };
 
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#000",
+    backgroundColor: "#f0f4f8",
     padding: 20,
   },
   titulo: {
