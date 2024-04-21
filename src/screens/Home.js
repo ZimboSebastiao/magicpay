@@ -232,17 +232,24 @@ const Home = () => {
         </View>
 
         <View style={{ justifyContent: "space-between", alignItems: "center", flexDirection: "row", padding: 10 }}>
-            <Text style={{ color: "#151515", fontWeight: "bold", fontSize: 18}}>Transações Recentes</Text>
+            <Text style={{ color: "#151515", fontWeight: "bold", fontSize: 18}}>Cobranças Recentes</Text>
           </View>
 
            {/* Seu código de renderização aqui */}
            {pixs.map((cob, index) => (
                 <Card key={index} p="$4" maxWidth={360} m="$3">
                     <Pressable key={index} onPress={() => console.log(cob)}>
-                        <View  style={{flexDirection: "row",justifyContent: "space-between", marginBottom: 6}}>
-                            <Text style={{fontWeight: "bold", fontSize: 15}}>{` ${cob.status}`}</Text>
-                            <Text style={{fontWeight: "bold", fontSize: 15, color: "#367F04"}}>{`${cob.status}`}</Text>
-                            <Text style={{fontWeight: "bold", fontSize: 15, color: "#367F04"}}>{`+ R$ ${cob.valor.original}`}</Text>
+                        <View  style={{flexDirection: "row",justifyContent: "space-between"}}>
+
+                        <View>
+                            <Text style={{fontWeight: "bold", fontSize: 15, marginBottom: 10}}>{` ${cob.chave}`}</Text>
+                            <Text style={{fontWeight: "bold", fontSize: 14, color: "#6f6f6f"}}>{` ${formatarHorario(cob.loc.criacao)}`}</Text>
+                        </View>
+
+                        <View>
+                          <Text style={{fontWeight: "bold", fontSize: 15, color: "#367F04", marginBottom: 10}}>{`R$ ${cob.valor.original}`}</Text>
+                          <Text style={{fontWeight: "bold", fontSize: 13, color: "#FF241E"}}>{`${cob.status}`}</Text>
+                        </View>
                         </View>
                         {/* <Text style={{fontWeight: "bold", fontSize: 14, color: "#6f6f6f"}}>{`${formatarHorario(cob.status)}`} </Text> */}
                     </Pressable>
