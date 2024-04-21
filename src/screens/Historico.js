@@ -18,10 +18,24 @@ export default function Historico() {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedPixIndex, setSelectedPixIndex] = useState(null);
   const ref = React.useRef(null)
+  const [saldoConta, setSaldoConta] = useState(null);
 
   const formatarHorario = (horario) => {
     return format(new Date(horario), "MMMM dd, yyyy HH:mm");
   };
+
+  useEffect(() => {
+    async function fetchSaldoConta() {
+      try {
+        const response = await axios.get('https://api-pix-j9w9.onrender.com/get-account-balance');
+        console.log('Saldo da conta:', response.data);
+        setSaldoConta(response.data.saldo);
+      } catch (error) {
+        console.error('Erro ao buscar saldo da conta:', error.message);
+      }
+    }
+    fetchSaldoConta();
+  }, []);
 
   useEffect(() => {
     async function fetchPixs() {
@@ -64,7 +78,7 @@ export default function Historico() {
 
           <Text style={estilos.titulo}>Carteira</Text>
           <Text style={estilos.texto}>Saldo disponível na carteira</Text>
-          <Text style={estilos.textoSaldo}>R$ 3.000</Text>
+          <Text style={estilos.textoSaldo}>R$ {saldoConta}</Text>
 
           <View style={estilos.botoes}>
             <Pressable style={estilos.botao}>

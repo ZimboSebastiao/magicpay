@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import { auth } from "../../firebase.config";
 import { View, Text, TouchableOpacity } from "react-native";
 import {
@@ -30,6 +31,21 @@ import { ScrollView } from "react-native";
 export default function Configuracoes({ navigation }) {
   console.log(navigation);
   const { email, displayName: nome } = auth.currentUser;
+  const [saldoConta, setSaldoConta] = useState(null);
+
+
+  useEffect(() => {
+    async function fetchSaldoConta() {
+      try {
+        const response = await axios.get('https://api-pix-j9w9.onrender.com/get-account-balance');
+        console.log('Saldo da conta:', response.data);
+        setSaldoConta(response.data.saldo);
+      } catch (error) {
+        console.error('Erro ao buscar saldo da conta:', error.message);
+      }
+    }
+    fetchSaldoConta();
+  }, []);
 
   return (
     <>
@@ -70,9 +86,9 @@ export default function Configuracoes({ navigation }) {
               </View>
 
               <View style={estilos.cartaoValores}>
-                 <Text style={estilos.valoresCor}>R$ 3.000</Text>
-                 <Text style={estilos.valoresCor}>R$ 2.400</Text>
-                 <Text style={estilos.valoresCor}>R$ 5.400</Text>
+                 <Text style={estilos.valoresCor}>R$ {saldoConta}</Text>
+                 <Text style={estilos.valoresCor}>R$ 0.000</Text>
+                 <Text style={estilos.valoresCor}>R$ 0.000</Text>
               </View>
             </Card>
           </View>
