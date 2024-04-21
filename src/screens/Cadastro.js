@@ -77,6 +77,20 @@ export default function Cadastro({ navigation }) {
     }
   };
 
+  const formatarCelular = (input) => {
+    let formattedInput = input.replace(/\D/g, "");
+    
+    formattedInput = formattedInput.replace(/^(\d{2})(\d{5})(\d{4})/, "($1) $2 - $3");
+
+    return formattedInput;
+  };
+
+  const handleNumeroChange = (input) => {
+    if (input.length <= 15) {
+      setNumero(formatarCelular(input));
+    }
+  };
+
   return (
     <>
       <ScrollView style={estilos.container}>
@@ -132,11 +146,12 @@ export default function Cadastro({ navigation }) {
           <View>
             <Text style={estilos.labeltexto}>Celular</Text>
             <TextInput
-              onChangeText={(valor) => setNumero(valor)}
+              value={numero}
+              onChangeText={handleNumeroChange}
               placeholder="(11) 97360 - 4933"
               placeholderTextColor="#6f6f6f"
               style={[estilos.input, { color: "#6f6f6f" }]}
-              keyboardType="email-address"
+              keyboardType="phone-pad"
             />
           </View>
           <View>
