@@ -19,10 +19,14 @@ export default function Cadastro({ navigation }) {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [chave, setChave] = useState("");
+  const [numero, setNumero] = useState("");
+  const [profisao, setProfisao] = useState("");
 
   const cadastrar = async () => {
-    if (!email || !senha || !nome) {
-      Alert.alert("Atenção!", "Preencha nome, e-mail e senha!");
+    if (!email || !senha || !nome || !chave || !profisao || !cpf || !numero) {
+      Alert.alert("Atenção!", "Preencha todos os dados");
       return;
     }
 
@@ -106,6 +110,7 @@ export default function Cadastro({ navigation }) {
           <View>
             <Text style={estilos.labeltexto}>CPF</Text>
             <TextInput
+              onChangeText={(valor) => setCpf(valor)}
               placeholder="CPF"
               placeholderTextColor="#6f6f6f"
               style={[estilos.input, { color: "#6f6f6f" }]}
@@ -116,7 +121,29 @@ export default function Cadastro({ navigation }) {
           <View>
             <Text style={estilos.labeltexto}>Sua Chave Pix</Text>
             <TextInput
+              onChangeText={(valor) => setChave(valor)}
               placeholder="Chave pix do banco Efí"
+              placeholderTextColor="#6f6f6f"
+              style={[estilos.input, { color: "#6f6f6f" }]}
+              keyboardType="email-address"
+            />
+          </View>
+
+          <View>
+            <Text style={estilos.labeltexto}>Celular</Text>
+            <TextInput
+              onChangeText={(valor) => setNumero(valor)}
+              placeholder="(11) 97360 - 4933"
+              placeholderTextColor="#6f6f6f"
+              style={[estilos.input, { color: "#6f6f6f" }]}
+              keyboardType="email-address"
+            />
+          </View>
+          <View>
+            <Text style={estilos.labeltexto}>Profisão</Text>
+            <TextInput
+              onChangeText={(valor) => setProfisao(valor)}
+              placeholder="ex: Comerciante"
               placeholderTextColor="#6f6f6f"
               style={[estilos.input, { color: "#6f6f6f" }]}
               keyboardType="email-address"
