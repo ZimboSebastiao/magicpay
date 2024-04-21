@@ -103,7 +103,7 @@ const Home = () => {
             <AvatarFallbackText>{nome || "Visitante"}</AvatarFallbackText>
           </Avatar>
 
-            <Text style={{color: "#151515", fontWeight: "bold", fontSize: 16}}>Olá, Bem-Vindo(a) de Volta!</Text>
+            <Text style={{color: "#151515", fontWeight: "bold", fontSize: 16}}>Olá, {nome}!</Text>
             
 
           <Pressable onPress={() => {navigation.navigate("Pix")}}>           
@@ -121,7 +121,7 @@ const Home = () => {
           <InputSlot pl="$3">
           <Search color="#6f6f6f" m="$2" w="$3" h="$3" />
           </InputSlot>
-          <InputField style={styles.textoCampo} placeholder="Buscar por Nome ou Chave Pix" />
+          <InputField style={styles.textoCampo} placeholder="Buscar por Chave Pix" />
         </Input>
         </View>
 
