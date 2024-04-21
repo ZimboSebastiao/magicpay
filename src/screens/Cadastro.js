@@ -91,6 +91,20 @@ export default function Cadastro({ navigation }) {
     }
   };
 
+  const formatarCPF = (input) => {
+    let formattedInput = input.replace(/\D/g, "");
+
+    formattedInput = formattedInput.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+
+    return formattedInput;
+  };
+
+  const handleCPFChange = (input) => {
+    if (input.length <= 14) {
+      setCpf(formatarCPF(input));
+    }
+  };
+
   return (
     <>
       <ScrollView style={estilos.container}>
@@ -124,8 +138,9 @@ export default function Cadastro({ navigation }) {
           <View>
             <Text style={estilos.labeltexto}>CPF</Text>
             <TextInput
-              onChangeText={(valor) => setCpf(valor)}
-              placeholder="CPF"
+              value={cpf}
+              onChangeText={handleCPFChange}
+              placeholder="000.000.000-00"
               placeholderTextColor="#6f6f6f"
               style={[estilos.input, { color: "#6f6f6f" }]}
               keyboardType="numeric" 
