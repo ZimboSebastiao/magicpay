@@ -109,6 +109,17 @@ export default function Historico() {
 
                 </View>
                 <Text style={{fontWeight: "bold", fontSize: 14, color: "#6f6f6f"}}>{`${formatarHorario(pix.horario)}`}</Text>
+                
+                {pix.devolucoes ? (
+                  pix.devolucoes.map((devolucao, devIndex) => (
+                    <View key={devIndex}>
+                      <Text style={{fontWeight: "bold", fontSize: 14, color: "#6f6f6f"}}>{`Status da devolução: ${devolucao.status}`}</Text>
+                      {/* Acessar outras informações da devolução, se necessário */}
+                    </View>
+                  ))
+                ) : (
+                  <Text style={{fontWeight: "bold", fontSize: 14, color: "#6f6f6f"}}>Sem devolução</Text>
+                )}
               </Pressable>
           </Card>
             ))}
