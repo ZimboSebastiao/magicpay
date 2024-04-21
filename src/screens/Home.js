@@ -6,7 +6,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Pressable, ScrollView } from 
 import { useNavigation } from "@react-navigation/native";
 import { auth } from "../../firebase.config";
 import { ScanBarcode, Bell, Search, CircleDollarSign, HandCoins, SquareSplitHorizontal, ScanSearch, ScanText, RefreshCcwDot, Barcode, Banknote } from 'lucide-react-native';
-import { Input, InputSlot, InputField } from "@gluestack-ui/themed";
+import { Input, InputSlot, InputField, HStack, Spinner } from "@gluestack-ui/themed";
 
 import {
   Avatar,
@@ -34,6 +34,7 @@ const Home = () => {
   const navigation = useNavigation();
   const { email, displayName: nome } = auth.currentUser;
   const [pixs, setPixs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const formatarHorario = (horario) => {
     return format(new Date(horario), "MMMM dd, yyyy hh:mm");
@@ -63,6 +64,7 @@ const Home = () => {
             });
 
             setPixs(response.data.cobs);
+            setIsLoading(false);
          
         } catch (error) {
             console.error('Erro ao buscar Pixs:', error.message);
@@ -75,6 +77,25 @@ const Home = () => {
   return (
     <GluestackUIProvider config={config}>
       <ScrollView style={styles.container}>
+
+      {isLoading && (
+            <View style={{
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "rgba(255, 255, 255, 0.7)",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              zIndex: 9999,
+            }}>
+            <HStack space="sm">
+              <Spinner />
+              <Text size="md">Carregando..</Text>
+          </HStack>
+            </View>
+           )}
 
         {/* CABEÇALHO - AVATAR - NOTIFICAÇÃOS*/}
         <View style={styles.usuarioAvatar}>

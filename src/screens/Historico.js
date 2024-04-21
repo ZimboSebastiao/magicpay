@@ -5,7 +5,7 @@ import { auth } from "../../firebase.config";
 import { View, Text, TextInput, TouchableOpacity, Pressable, ScrollView } from "react-native";
 import { ScanBarcode, Send, RotateCcw, Search  } from 'lucide-react-native';
 import { useNavigation } from "@react-navigation/native";
-import { Input, InputIcon, InputSlot, SearchIcon, InputField } from "@gluestack-ui/themed";
+import { Input, InputIcon, InputSlot, SearchIcon, InputField, Spinner, HStack,   } from "@gluestack-ui/themed";
 import { config } from "@gluestack-ui/config";
 import {
   GluestackUIProvider,
@@ -18,6 +18,7 @@ export default function Historico() {
   const { email, displayName: nome } = auth.currentUser;
   const navigation = useNavigation();
   const [pixs, setPixs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const formatarHorario = (horario) => {
     return format(new Date(horario), "MMMM dd, yyyy HH:mm");
@@ -29,6 +30,7 @@ export default function Historico() {
         const response = await axios.get('https://api-pix-j9w9.onrender.com/v2/pix');
         console.log('Resposta da API Pix:', response.data);
         setPixs(response.data.pix);
+        setIsLoading(false);
          
       } catch (error) {
         console.error('Erro ao buscar Pixs:', error.message);
@@ -41,6 +43,26 @@ export default function Historico() {
     <>
       <GluestackUIProvider config={config}>
         <ScrollView style={estilos.container}>
+
+        {isLoading && (
+            <View style={{
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "rgba(255, 255, 255, 0.7)",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              zIndex: 9999,
+            }}>
+            <HStack space="sm">
+              <Spinner />
+              <Text size="md">Carregando os dados, aguarde!</Text>
+          </HStack>
+            </View>
+           )}
+
           <Text style={estilos.titulo}>Carteira</Text>
           <Text style={estilos.texto}>Saldo disponível na carteira</Text>
           <Text style={estilos.textoSaldo}>R$ 3.000</Text>

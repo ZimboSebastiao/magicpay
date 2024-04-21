@@ -106,7 +106,7 @@ export default function Cadastro({ navigation }) {
         <View style={{
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "rgba(255, 255, 255, 0.7)", // Use uma cor semitransparente para fundo
+          backgroundColor: "rgba(255, 255, 255, 0.7)", 
           position: "absolute",
           top: 0,
           left: 0,
