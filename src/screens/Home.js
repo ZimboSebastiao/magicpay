@@ -35,10 +35,25 @@ const Home = () => {
   const { email, displayName: nome } = auth.currentUser;
   const [pixs, setPixs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [saldoConta, setSaldoConta] = useState(null);
+  const [moedaSelecionada, setMoedaSelecionada] = useState("Real Brasil");
 
   const formatarHorario = (horario) => {
     return format(new Date(horario), "MMMM dd, yyyy hh:mm");
   };
+
+  useEffect(() => {
+    async function fetchSaldoConta() {
+      try {
+        const response = await axios.get('https://api-pix-j9w9.onrender.com/get-account-balance');
+        console.log('Saldo da conta:', response.data);
+        setSaldoConta(response.data.saldo);
+      } catch (error) {
+        console.error('Erro ao buscar saldo da conta:', error.message);
+      }
+    }
+    fetchSaldoConta();
+  }, []);
 
   useEffect(() => {
     async function fetchPixs() {
@@ -135,11 +150,11 @@ const Home = () => {
             m="$3"
           >
             <Text style={styles.textoCartao}>Saldo monetário</Text>
-            <Text style={styles.textoCartaoValor}> R$ 3.000,00</Text>
+            <Text style={styles.textoCartaoValor}>R$ {saldoConta} </Text>
 
             <Select>
               <SelectTrigger style={styles.selecao} variant="rounded" size="sm">
-                <SelectInput sx={{ color: "white" }} placeholder="Moeda" />
+                <SelectInput sx={{ color: "white" }}  value={moedaSelecionada} placeholder="Moeda" />
                 <SelectIcon mr="$3">
                   <Icon as={ChevronDownIcon} />
                 </SelectIcon>
@@ -150,9 +165,9 @@ const Home = () => {
                   <SelectDragIndicatorWrapper style={styles.selecaoConteudo}>
                     <SelectDragIndicator />
                   </SelectDragIndicatorWrapper>
-                  <SelectItem label="Real Brasil" value="R$" />
-                  <SelectItem label="US dollar" value="$" />
-                  <SelectItem label="Kwanza Angola" value="AOA" />
+                   <SelectItem label="Real Brasil" value="R$" />
+                   
+
                 </SelectContent>
               </SelectPortal>
             </Select>
