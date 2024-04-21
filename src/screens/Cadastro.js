@@ -1,6 +1,7 @@
 import { auth } from "../../firebase.config";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useState } from "react";
+import { Spinner, HStack,  } from '@gluestack-ui/themed';
 import {
   Alert,
   Text,
@@ -16,6 +17,7 @@ import { Image } from "react-native";
 import destaque from "../../assets/images/logo.png";
 
 export default function Cadastro({ navigation }) {
+  const [isLoading, setIsLoading] = useState(false);
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -31,6 +33,7 @@ export default function Cadastro({ navigation }) {
     }
 
     try {
+      setIsLoading(true);
       const contaUsuario = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -41,22 +44,11 @@ export default function Cadastro({ navigation }) {
         await updateProfile(auth.currentUser, { displayName: nome });
         console.log(contaUsuario.user.displayName);
       }
+      setIsLoading(false);
 
-      Alert.alert("Cadastro", "Seu cadastro foi concluído com sucesso!", [
-        {
-          style: "cancel",
-          text: "Permanecer",
-          onPress: () => {
-            return;
-          },
-        },
-        {
-          style: "default",
-          text: "Ir para a Home",
-          onPress: () => navigation.navigate("Home"),
-        },
-      ]);
+      
     } catch (error) {
+      setIsLoading(false);
       // console.error(error.code);
       let mensagem;
       switch (error.code) {
@@ -107,7 +99,27 @@ export default function Cadastro({ navigation }) {
 
   return (
     <>
+    
+      
       <ScrollView style={estilos.container}>
+      {isLoading && (
+        <View style={{
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "rgba(255, 255, 255, 0.7)", // Use uma cor semitransparente para fundo
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 9999, 
+        }}>
+          <HStack space="sm">
+            <Spinner />
+            <Text size="md">Por favor, aguarde!</Text>
+          </HStack>
+        </View>
+          )}
         <View>
           <Image style={estilos.destaque} source={destaque} />
           <Text style={{fontWeight: "bold", fontSize: 20, textAlign: "center"}}>Criar uma conta</Text>
