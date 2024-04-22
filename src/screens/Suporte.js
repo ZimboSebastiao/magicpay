@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Image, ScrollView, Pressable } from "react-native";
-import { Mail } from 'lucide-react-native';
+import { Mail, Plus, Minus } from 'lucide-react-native';
 import {Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionIcon, MinusIcon, PlusIcon, AccordionTitleText, AccordionContent, AccordionContentText, GluestackUIProvider} from "@gluestack-ui/themed";
 import imagemSuporte from "../../assets/images/servicos-de-suporte.png";
 import { config } from "@gluestack-ui/config";
 export default function Suporte({ navigation }) {
 
   return (
-    <GluestackUIProvider >
+    <GluestackUIProvider config={config}>
     <ScrollView style={estilos.container}>
      <Text style={estilos.titulo}>Central de Ajuda</Text>
 
@@ -25,9 +25,11 @@ export default function Suporte({ navigation }) {
 
 
         <Accordion style={{backgroundColor: "#f0f4f8"}} m="$5" width="90%" maxWidth={640} shadowColor="transparent">
+
         <AccordionItem style={{backgroundColor: "#ffffff", elevation: 3,}} value="item-1" borderRadius="$lg">
           <AccordionHeader>
             <AccordionTrigger
+           
               sx={{
                 ":focusVisible": {
                   borderRadius: "$lg",
@@ -38,11 +40,11 @@ export default function Suporte({ navigation }) {
                 return (
                   <>
                     {isExpanded ? (
-                      <AccordionIcon as={MinusIcon} mr="$3" />
+                      <Minus color="#538dfd"   />
                     ) : (
-                      <AccordionIcon as={PlusIcon} mr="$3" />
+                      <Plus color="#538dfd"  />
                     )}
-                    <AccordionTitleText>
+                    <AccordionTitleText  style={{ paddingLeft: 12}}>
                       How do I place an order?
                     </AccordionTitleText>
                   </>
@@ -59,170 +61,7 @@ export default function Suporte({ navigation }) {
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem style={{backgroundColor: "#ffffff", elevation: 3,}} value="item-2" mt="$5" borderRadius="$lg">
-          <AccordionHeader>
-            <AccordionTrigger
-              sx={{
-                ":focusVisible": {
-                  borderRadius: "$lg",
-                },
-              }}
-            >
-              {({ isExpanded }) => {
-                return (
-                  <>
-                    {isExpanded ? (
-                      <AccordionIcon as={MinusIcon} mr="$3" />
-                    ) : (
-                      <AccordionIcon as={PlusIcon} mr="$3" />
-                    )}
-                    <AccordionTitleText>
-                      What payment methods do you accept?
-                    </AccordionTitleText>
-                  </>
-                )
-              }}
-            </AccordionTrigger>
-          </AccordionHeader>
-          <AccordionContent ml="$9">
-            <AccordionContentText>
-              We accept all major credit cards, including Visa, Mastercard, and
-              American Express. We also support payments through PayPal.
-            </AccordionContentText>
-          </AccordionContent>
-        </AccordionItem>
-
-        <AccordionItem style={{backgroundColor: "#ffffff", elevation: 3,}} value="item-3" mt="$5" borderRadius="$lg">
-          <AccordionHeader>
-            <AccordionTrigger
-              sx={{
-                ":focusVisible": {
-                  borderRadius: "$lg",
-                },
-              }}
-            >
-              {({ isExpanded }) => {
-                return (
-                  <>
-                    {isExpanded ? (
-                      <AccordionIcon as={MinusIcon} mr="$3" />
-                    ) : (
-                      <AccordionIcon as={PlusIcon} mr="$3" />
-                    )}
-                    <AccordionTitleText>
-                      What payment methods do you accept?
-                    </AccordionTitleText>
-                  </>
-                )
-              }}
-            </AccordionTrigger>
-          </AccordionHeader>
-          <AccordionContent ml="$9">
-            <AccordionContentText>
-              We accept all major credit cards, including Visa, Mastercard, and
-              American Express. We also support payments through PayPal.
-            </AccordionContentText>
-          </AccordionContent>
-        </AccordionItem>
-
-        <AccordionItem style={{backgroundColor: "#ffffff", elevation: 3,}} value="item-4" mt="$5" borderRadius="$lg">
-          <AccordionHeader>
-            <AccordionTrigger
-              sx={{
-                ":focusVisible": {
-                  borderRadius: "$lg",
-                },
-              }}
-            >
-              {({ isExpanded }) => {
-                return (
-                  <>
-                    {isExpanded ? (
-                      <AccordionIcon as={MinusIcon} mr="$3" />
-                    ) : (
-                      <AccordionIcon as={PlusIcon} mr="$3" />
-                    )}
-                    <AccordionTitleText>
-                      What payment methods do you accept?
-                    </AccordionTitleText>
-                  </>
-                )
-              }}
-            </AccordionTrigger>
-          </AccordionHeader>
-          <AccordionContent ml="$9">
-            <AccordionContentText>
-              We accept all major credit cards, including Visa, Mastercard, and
-              American Express. We also support payments through PayPal.
-            </AccordionContentText>
-          </AccordionContent>
-        </AccordionItem>
-
-        <AccordionItem style={{backgroundColor: "#ffffff", elevation: 3,}} value="item-5" mt="$5" borderRadius="$lg">
-          <AccordionHeader>
-            <AccordionTrigger
-              sx={{
-                ":focusVisible": {
-                  borderRadius: "$lg",
-                },
-              }}
-            >
-              {({ isExpanded }) => {
-                return (
-                  <>
-                    {isExpanded ? (
-                      <AccordionIcon as={MinusIcon} mr="$3" />
-                    ) : (
-                      <AccordionIcon as={PlusIcon} mr="$3" />
-                    )}
-                    <AccordionTitleText>
-                      What payment methods do you accept?
-                    </AccordionTitleText>
-                  </>
-                )
-              }}
-            </AccordionTrigger>
-          </AccordionHeader>
-          <AccordionContent ml="$9">
-            <AccordionContentText>
-              We accept all major credit cards, including Visa, Mastercard, and
-              American Express. We also support payments through PayPal.
-            </AccordionContentText>
-          </AccordionContent>
-        </AccordionItem>
-
-        <AccordionItem style={{backgroundColor: "#ffffff", elevation: 3,}} value="item-6" mt="$5" borderRadius="$lg">
-          <AccordionHeader>
-            <AccordionTrigger
-              sx={{
-                ":focusVisible": {
-                  borderRadius: "$lg",
-                },
-              }}
-            >
-              {({ isExpanded }) => {
-                return (
-                  <>
-                    {isExpanded ? (
-                      <AccordionIcon as={MinusIcon} mr="$3" />
-                    ) : (
-                      <AccordionIcon as={PlusIcon} mr="$3" />
-                    )}
-                    <AccordionTitleText>
-                      What payment methods do you accept?
-                    </AccordionTitleText>
-                  </>
-                )
-              }}
-            </AccordionTrigger>
-          </AccordionHeader>
-          <AccordionContent ml="$9">
-            <AccordionContentText>
-              We accept all major credit cards, including Visa, Mastercard, and
-              American Express. We also support payments through PayPal.
-            </AccordionContentText>
-          </AccordionContent>
-        </AccordionItem>
+       
 
         </Accordion>
 
@@ -254,7 +93,7 @@ const estilos = StyleSheet.create({
     textAlign: "center",
     paddingTop: 25,
     marginBottom: 30,
-    color: "#538dfd",
+    color: "#151515",
   },
   botoes: {
     justifyContent: "center",
@@ -270,10 +109,12 @@ const estilos = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     padding: 10,
-    borderRadius: 8
+    borderRadius: 8,
+    paddingLeft: 20,
   },
   textoBotao: {
     fontSize: 16,
     marginLeft: 10,
+    fontWeight: "bold"
   },
 });
