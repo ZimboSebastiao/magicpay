@@ -131,7 +131,7 @@ export default function Configuracoes({ navigation }) {
             <Button
               style={estilos.botao}
               onPress={() => {
-                navigation.navigate("Idiomas");
+                navigation.navigate("Perguntas");
               }}
             >
               <MessageCircleQuestion color="#538dfd" size={26} />
