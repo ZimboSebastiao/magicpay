@@ -105,7 +105,7 @@ export default function Perguntas({ navigation }) {
               return (
                 <>
                   <AccordionTitleText>
-                    Can I disable the whole accordion?
+                  Como o PixWallet ajuda os pequenos comerciantes e empreendedores?
                   </AccordionTitleText>
                   {isExpanded ? (
                     <AccordionIcon as={ChevronUpIcon} />
@@ -149,8 +149,7 @@ export default function Perguntas({ navigation }) {
               return (
                 <>
                   <AccordionTitleText>
-                    What is a controlled accordion? How can I make it
-                    controlled?
+                  Características e funcionalidades oferecidas pelo PixWallet?
                   </AccordionTitleText>
                   {isExpanded ? (
                     <AccordionIcon as={ChevronUpIcon} />
@@ -181,6 +180,212 @@ export default function Perguntas({ navigation }) {
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
+
+      <AccordionItem 
+        value="d"  
+        borderTopWidth={1}
+        borderTopColor="$borderLight300"
+        $dark-borderBottomColor="$borderDark700">
+        <AccordionHeader
+         style={{backgroundColor: "#f0f4f8"}}
+          sx={{
+            backgroundColor: "$backgroundLight0",
+            _dark: {
+              backgroundColor: "$backgroundDark950",
+            },
+          }}
+        >
+          <AccordionTrigger>
+            {({ isExpanded }) => {
+              return (
+                <>
+                  <AccordionTitleText>
+                  segurança para as transações financeiras
+                  </AccordionTitleText>
+                  {isExpanded ? (
+                    <AccordionIcon as={ChevronUpIcon} />
+                  ) : (
+                    <AccordionIcon as={ChevronDownIcon} />
+                  )}
+                </>
+              )
+            }}
+          </AccordionTrigger>
+        </AccordionHeader>
+        <AccordionContent
+          mt="$0"
+          pt="$2"
+          sx={{
+            backgroundColor: "$backgroundLight50",
+            _dark: {
+              backgroundColor: "$backgroundDark900",
+            },
+          }}
+        >
+          <AccordionContentText>
+            Controlled components refer to the components where the state and
+            behaviors are controlled by the Parent component. You can make the
+            accordion a controlled component by passing the value prop to the
+            Accordion component and setting the onValueChange prop to update the
+            value prop. Refer to the controlled accordion example in the docs.
+          </AccordionContentText>
+        </AccordionContent>
+      </AccordionItem>
+
+      <AccordionItem 
+        value="e"  
+        borderTopWidth={1}
+        borderTopColor="$borderLight300"
+        $dark-borderBottomColor="$borderDark700">
+        <AccordionHeader
+         style={{backgroundColor: "#f0f4f8"}}
+          sx={{
+            backgroundColor: "$backgroundLight0",
+            _dark: {
+              backgroundColor: "$backgroundDark950",
+            },
+          }}
+        >
+          <AccordionTrigger>
+            {({ isExpanded }) => {
+              return (
+                <>
+                  <AccordionTitleText>
+                  Qual é o processo para gerar um QR Code de cobrança via Pix usando o PixWallet?
+                  </AccordionTitleText>
+                  {isExpanded ? (
+                    <AccordionIcon as={ChevronUpIcon} />
+                  ) : (
+                    <AccordionIcon as={ChevronDownIcon} />
+                  )}
+                </>
+              )
+            }}
+          </AccordionTrigger>
+        </AccordionHeader>
+        <AccordionContent
+          mt="$0"
+          pt="$2"
+          sx={{
+            backgroundColor: "$backgroundLight50",
+            _dark: {
+              backgroundColor: "$backgroundDark900",
+            },
+          }}
+        >
+          <AccordionContentText>
+            Controlled components refer to the components where the state and
+            behaviors are controlled by the Parent component. You can make the
+            accordion a controlled component by passing the value prop to the
+            Accordion component and setting the onValueChange prop to update the
+            value prop. Refer to the controlled accordion example in the docs.
+          </AccordionContentText>
+        </AccordionContent>
+      </AccordionItem>
+
+      <AccordionItem 
+        value="f"  
+        borderTopWidth={1}
+        borderTopColor="$borderLight300"
+        $dark-borderBottomColor="$borderDark700">
+        <AccordionHeader
+         style={{backgroundColor: "#f0f4f8"}}
+          sx={{
+            backgroundColor: "$backgroundLight0",
+            _dark: {
+              backgroundColor: "$backgroundDark950",
+            },
+          }}
+        >
+          <AccordionTrigger>
+            {({ isExpanded }) => {
+              return (
+                <>
+                  <AccordionTitleText>
+                  Existem taxas associadas ao uso do PixWallet?
+                  </AccordionTitleText>
+                  {isExpanded ? (
+                    <AccordionIcon as={ChevronUpIcon} />
+                  ) : (
+                    <AccordionIcon as={ChevronDownIcon} />
+                  )}
+                </>
+              )
+            }}
+          </AccordionTrigger>
+        </AccordionHeader>
+        <AccordionContent
+          mt="$0"
+          pt="$2"
+          sx={{
+            backgroundColor: "$backgroundLight50",
+            _dark: {
+              backgroundColor: "$backgroundDark900",
+            },
+          }}
+        >
+          <AccordionContentText>
+            Controlled components refer to the components where the state and
+            behaviors are controlled by the Parent component. You can make the
+            accordion a controlled component by passing the value prop to the
+            Accordion component and setting the onValueChange prop to update the
+            value prop. Refer to the controlled accordion example in the docs.
+          </AccordionContentText>
+        </AccordionContent>
+      </AccordionItem>
+
+      <AccordionItem 
+        value="g"  
+        borderTopWidth={1}
+        borderTopColor="$borderLight300"
+        $dark-borderBottomColor="$borderDark700">
+        <AccordionHeader
+         style={{backgroundColor: "#f0f4f8"}}
+          sx={{
+            backgroundColor: "$backgroundLight0",
+            _dark: {
+              backgroundColor: "$backgroundDark950",
+            },
+          }}
+        >
+          <AccordionTrigger>
+            {({ isExpanded }) => {
+              return (
+                <>
+                  <AccordionTitleText>
+                  O PixWallet é compatível com outras plataformas de pagamento digital ou funciona exclusivamente com o Pix?
+                  </AccordionTitleText>
+                  {isExpanded ? (
+                    <AccordionIcon as={ChevronUpIcon} />
+                  ) : (
+                    <AccordionIcon as={ChevronDownIcon} />
+                  )}
+                </>
+              )
+            }}
+          </AccordionTrigger>
+        </AccordionHeader>
+        <AccordionContent
+          mt="$0"
+          pt="$2"
+          sx={{
+            backgroundColor: "$backgroundLight50",
+            _dark: {
+              backgroundColor: "$backgroundDark900",
+            },
+          }}
+        >
+          <AccordionContentText>
+            Controlled components refer to the components where the state and
+            behaviors are controlled by the Parent component. You can make the
+            accordion a controlled component by passing the value prop to the
+            Accordion component and setting the onValueChange prop to update the
+            value prop. Refer to the controlled accordion example in the docs.
+          </AccordionContentText>
+        </AccordionContent>
+      </AccordionItem>
+
+
     </Accordion>
 
      </View>
