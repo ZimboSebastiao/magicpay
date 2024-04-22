@@ -1,10 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Image, ScrollView, Pressable } from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView, Pressable, Linking } from "react-native";
 import { Mail, Plus, Minus } from 'lucide-react-native';
 import {Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionIcon, MinusIcon, PlusIcon, AccordionTitleText, AccordionContent, AccordionContentText, GluestackUIProvider} from "@gluestack-ui/themed";
 import imagemSuporte from "../../assets/images/servicos-de-suporte.png";
 import { config } from "@gluestack-ui/config";
 export default function Suporte({ navigation }) {
+
+  const enviarEmail = () => {
+    // Endereço de e-mail para onde você deseja enviar o e-mail
+    const destinatario = 'exemplo@email.com';
+  
+    // Formato do link para abrir o aplicativo de e-mail com o destinatário pré-definido
+    const url = `mailto:${destinatario}`;
+  
+    // Abrir o aplicativo de e-mail
+    Linking.openURL(url)
+      .then(() => console.log('Aplicativo de e-mail aberto com sucesso'))
+      .catch((err) => console.error('Erro ao abrir o aplicativo de e-mail:', err));
+  };
 
   return (
     <GluestackUIProvider config={config}>
@@ -18,7 +31,7 @@ export default function Suporte({ navigation }) {
 
      <View style={estilos.botoes}>
 
-        <Pressable style={estilos.botao}>
+        <Pressable style={estilos.botao} onPress={enviarEmail}>
           <Mail color="#538dfd" />
           <Text style={estilos.textoBotao}>Envia-nos um E-mail</Text>
         </Pressable>
