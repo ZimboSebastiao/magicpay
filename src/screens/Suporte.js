@@ -31,12 +31,17 @@ export default function Suporte({ navigation }) {
     <ScrollView style={estilos.container}>
      <Text style={estilos.titulo}>Central de Ajuda</Text>
 
-     <View style={estilos.imagem}>
-      <Image  source={imagemSuporte} />
-     <Text style={estilos.tituloImagem}>Como podemos te Ajudar?</Text>
-     </View>
+      <View style={estilos.imagem}>
+        <Image  source={imagemSuporte} />
+      <Text style={estilos.tituloImagem}>Como podemos te Ajudar?</Text>
+      </View>
+
+      <View style={estilos.viewAjuda}>        
+        <Text style={estilos.textoAjuda}>Nossa equipe de suporte está à disposição para ajudá-lo com qualquer problema ou pergunta que você possa ter. Se precisar de ajuda adicional, não hesite em nos contatar.</Text>
+      </View>
 
      <View style={estilos.botoes}>
+
 
         <Pressable style={estilos.botao} onPress={enviarEmail}>
           <Mail color="#538dfd" />
@@ -70,7 +75,7 @@ export default function Suporte({ navigation }) {
                       <Plus color="#538dfd"  />
                     )}
                     <AccordionTitleText  style={{ paddingLeft: 12}}>
-                      How do I place an order?
+                      Horários de Atendimento
                     </AccordionTitleText>
                   </>
                 )
@@ -79,9 +84,15 @@ export default function Suporte({ navigation }) {
           </AccordionHeader>
           <AccordionContent ml="$9">
             <AccordionContentText>
-              To place an order, simply select the products you want, proceed to
-              checkout, provide shipping and payment information, and finalize
-              your purchase.
+            Nossa equipe está disponível para ajudá-lo durante os seguintes horários: 
+
+            <Text style={estilos.tituloHorario}>  {"\n"} • Segunda a Sexta:  
+            <Text style={estilos.textoHorario}> 08:00 às 22:00</Text></Text>
+            <Text style={estilos.tituloHorario}>  {"\n"} • Sabado:  
+            <Text style={estilos.textoHorario}> 10:00 às 18:00</Text></Text>
+            <Text style={estilos.tituloHorario}>  {"\n"} • Domingo:  
+            <Text style={estilos.textoHorario}> 12:00 às 16:00</Text></Text>
+
             </AccordionContentText>
           </AccordionContent>
         </AccordionItem>
@@ -117,8 +128,21 @@ const estilos = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     paddingTop: 25,
-    marginBottom: 30,
+    marginBottom: 25,
     color: "#151515",
+  },
+  viewAjuda:{
+    backgroundColor: "#ffffff",
+    borderWidth: 2,
+    elevation: 3,
+    borderColor: "#ffffff",
+    margin: 20,
+    padding: 10,
+    borderRadius: 8,
+  },
+  textoAjuda: {
+    fontSize: 16,
+    textAlign: "center"
   },
   botoes: {
     justifyContent: "center",
@@ -154,5 +178,14 @@ const estilos = StyleSheet.create({
     fontSize: 16,
     marginLeft: 10,
     fontWeight: "bold"
+  },
+  tituloHorario: {
+    fontSize: 15,
+    lineHeight: 24,
+    fontWeight: "bold"
+  },
+  textoHorario: {
+    fontWeight: "normal",
+    fontSize: 14
   },
 });
