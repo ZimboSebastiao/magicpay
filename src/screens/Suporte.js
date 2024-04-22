@@ -1,23 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Image, ScrollView, Pressable, Linking } from "react-native";
-import { Mail, Plus, Minus } from 'lucide-react-native';
+import { Mail, Plus, Minus, Phone } from 'lucide-react-native';
 import {Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionIcon, MinusIcon, PlusIcon, AccordionTitleText, AccordionContent, AccordionContentText, GluestackUIProvider} from "@gluestack-ui/themed";
 import imagemSuporte from "../../assets/images/servicos-de-suporte.png";
 import { config } from "@gluestack-ui/config";
 export default function Suporte({ navigation }) {
 
   const enviarEmail = () => {
-    // Endereço de e-mail para onde você deseja enviar o e-mail
-    const destinatario = 'exemplo@email.com';
-  
-    // Formato do link para abrir o aplicativo de e-mail com o destinatário pré-definido
+    const destinatario = 'suporte.pixwallet@gmail.com';
     const url = `mailto:${destinatario}`;
-  
-    // Abrir o aplicativo de e-mail
     Linking.openURL(url)
       .then(() => console.log('Aplicativo de e-mail aberto com sucesso'))
       .catch((err) => console.error('Erro ao abrir o aplicativo de e-mail:', err));
   };
+
+
+  const fazerChamada = () => {
+   
+    const numeroTelefone = '+5511973604933';
+    const url = `tel:${numeroTelefone}`;
+  
+    Linking.openURL(url)
+      .then(() => console.log('Aplicativo de chamada aberto com sucesso'))
+      .catch((err) => console.error('Erro ao abrir o aplicativo de chamada:', err));
+  };
+
 
   return (
     <GluestackUIProvider config={config}>
@@ -34,6 +41,11 @@ export default function Suporte({ navigation }) {
         <Pressable style={estilos.botao} onPress={enviarEmail}>
           <Mail color="#538dfd" />
           <Text style={estilos.textoBotao}>Envia-nos um E-mail</Text>
+        </Pressable>
+
+        <Pressable style={estilos.botaoCelular} onPress={fazerChamada}>
+          <Phone color="#538dfd" />
+          <Text style={estilos.textoBotao}>Entre em contato</Text>
         </Pressable>
 
 
@@ -114,6 +126,19 @@ const estilos = StyleSheet.create({
     
   },
   botao: {
+    width: "90%",
+    backgroundColor: "#ffffff",
+    borderWidth: 2,
+    elevation: 3,
+    borderColor: "#ffffff",
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 10,
+    borderRadius: 8,
+    paddingLeft: 20,
+    marginBottom: 20
+  },
+  botaoCelular: {
     width: "90%",
     backgroundColor: "#ffffff",
     borderWidth: 2,
